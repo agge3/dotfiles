@@ -1,0 +1,9 @@
+[NotebookList]
+Default=
+1=~/zim/main
+
+[Notebook 1]
+uri=~/zim/main
+name=main
+interwiki=None
+icon=None
