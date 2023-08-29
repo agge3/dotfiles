@@ -22,6 +22,43 @@ return require('packer').startup(function(use)
   })
 
   use({
+      'catppuccin/nvim',
+      as = 'catppuccin',
+      config = function()
+          vim.cmd('colorscheme catppuccin')
+      end
+  })
+
+  use({
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      config = function()
+          vim.cmd('colorscheme rose-pine')
+      end
+  })
+
+  use({
+      'navarasu/onedark.nvim',
+      as = 'onedark',
+      config = function()
+          vim.cmd('colorscheme onedark')
+          require('onedark').setup {
+            style = 'deep',
+            transparent = true,
+            term_colors = true,
+
+            code_style = {
+                comments = 'italic',
+                keywords = 'none',
+                functions = 'none',
+                string = 'none',
+                variable = 'none'
+            }
+          }
+      end
+  })
+
+  use({
       "folke/trouble.nvim",
       config = function()
           require("trouble").setup {

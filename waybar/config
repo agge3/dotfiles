@@ -1,5 +1,5 @@
 [{
-    "output": "DP-2",
+    "output": "DP-1",
 
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
@@ -23,6 +23,7 @@
 	"user",
 	"wireplumber",
 	"tray",
+    //"wlr/taskbar",
 	"clock"
     ],
 // Modules configuration
@@ -52,16 +53,16 @@
 	"sort-by-number": true,
 	"on-click": "activate",
     	"persistent_workspaces": {
-		"1": ["DP-2"],
-		"2": ["DP-2"],
-		"3": ["DP-2"],
-		"4": ["DP-2"],
-		"5": ["DP-2"],
-		"6": ["DP-2"],
-		"7": ["DP-2"],
-		"8": ["DP-2"],
-		"9": ["DP-2"],
-		"10": ["HDMI-A-1"]
+		"1": ["DP-1"],
+		"2": ["DP-1"],
+		"3": ["DP-1"],
+		"4": ["DP-1"],
+		"5": ["DP-1"],
+		"6": ["DP-1"],
+		"7": ["DP-1"],
+		"8": ["DP-1"],
+		"9": ["DP-1"],
+		"10": ["HDMI-A-2"]
 	},
 	"format-icons": {
 		"1": "一",
@@ -87,8 +88,8 @@
         }
     },
     "tray": {
-        "icon-size": 5,
-        "spacing": 2
+        "icon-size": 20,
+        "spacing": 5
     },
     "cpu": {
 	"interval": 5,
@@ -141,10 +142,22 @@
     	"interval": 60,
 	"format": "「Uptime 〜 {work_H} hrs」",
 	"icon": true
+    },
+    "wlr/taskbar": {
+        "all-outputs": "true",
+        "format": "{icon}",
+        "icon-size": 14,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "kitty"
+        ]
     }
+
 },
 {
-    "output": "HDMI-A-1",
+    "output": "HDMI-A-2",
 
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
@@ -197,16 +210,16 @@
 	"sort-by-number": true,
 	"on-click": "activate",
     	"persistent_workspaces": {
-		"1": ["DP-2"],
-		"2": ["DP-2"],
-		"3": ["DP-2"],
-		"4": ["DP-2"],
-		"5": ["DP-2"],
-		"6": ["DP-2"],
-		"7": ["DP-2"],
-		"8": ["DP-2"],
-		"9": ["DP-2"],
-		"10": ["HDMI-A-1"]
+		"1": ["DP-1"],
+		"2": ["DP-1"],
+		"3": ["DP-1"],
+		"4": ["DP-1"],
+		"5": ["DP-1"],
+		"6": ["DP-1"],
+		"7": ["DP-1"],
+		"8": ["DP-1"],
+		"9": ["DP-1"],
+		"10": ["HDMI-A-2"]
 	},
 	"format-icons": {
 		"1": "一",
@@ -232,8 +245,8 @@
         }
     },
     "tray": {
-        "icon-size": 5,
-        "spacing": 2
+        "icon-size": 20,
+        "spacing": 5
     },
     "cpu": {
 	"interval": 5,
