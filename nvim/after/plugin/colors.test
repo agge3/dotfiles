@@ -1,0 +1,13 @@
+require('onedark').setup {
+    style = 'deep',
+    transparent = true,
+    term_colors = true,
+    
+    code_style = {
+        comments = 'italic',
+        keywords = 'none',
+        functions = 'none',
+        string = 'none',
+        variable = 'none'
+    }
+}

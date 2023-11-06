@@ -1,0 +1,20 @@
+2023/11/06-01:53:30.498 131e Reusing MANIFEST /home/agge/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2023/11/06-01:53:30.499 131e Recovering log #421
+2023/11/06-01:53:30.500 131e Reusing old log /home/agge/.config/discord/Local Storage/leveldb/000421.log 
+2023/11/06-01:58:51.763 26c4 Level-0 table #425: started
+2023/11/06-01:58:51.798 26c4 Level-0 table #425: 2061413 bytes OK
+2023/11/06-01:58:51.811 26c4 Delete type=0 #421
+2023/11/06-02:46:10.595 26c4 Level-0 table #427: started
+2023/11/06-02:46:10.631 26c4 Level-0 table #427: 4063361 bytes OK
+2023/11/06-02:46:10.643 26c4 Delete type=0 #424
+2023/11/06-02:46:10.644 26c4 Compacting 4@0 + 2@1 files
+2023/11/06-02:46:10.696 26c4 Generated table #428@0: 28 keys, 4049348 bytes
+2023/11/06-02:46:10.708 26c4 Generated table #429@0: 82 keys, 1766033 bytes
+2023/11/06-02:46:10.708 26c4 Compacted 4@0 + 2@1 files => 5815381 bytes
+2023/11/06-02:46:10.720 26c4 compacted to: files[ 0 3 1 0 0 0 0 ]
+2023/11/06-02:46:10.720 26c4 Delete type=2 #416
+2023/11/06-02:46:10.720 26c4 Delete type=2 #417
+2023/11/06-02:46:10.720 26c4 Delete type=2 #420
+2023/11/06-02:46:10.720 26c4 Delete type=2 #422
+2023/11/06-02:46:10.720 26c4 Delete type=2 #425
+2023/11/06-02:46:10.720 26c4 Delete type=2 #427
