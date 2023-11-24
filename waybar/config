@@ -3,36 +3,38 @@
 
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 35, // Waybar height (to be removed for auto height)
 
-    // "width": 1280, // Waybar width
+    // "width": 1440, // Waybar width
 
     "spacing": 0, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["image#gentoo", "wlr/workspaces", "hyprland/submap", "hyprland/window"],
-    //"modules-center":
+    "modules-left": ["wlr/workspaces", "hyprland/submap"],
+    "modules-center": ["hyprland/window"],
     "modules-right": [
     	//"hyprland/language",
 	"network",
-	"cpu",
-	"memory",
 	"disk",
+	//"memory#swap",
+	"memory",
+	"cpu",
 	"temperature",
-	"memory#swap",
-	"user",
-	"wireplumber",
 	"tray",
     //"wlr/taskbar",
+	"wireplumber",
+	"user",
 	"clock"
     ],
 // Modules configuration
     // Modules Left
-    "image#gentoo": {
+
+    /*"image#gentoo": {
 	"path": "/home/agge/Downloads/gentoo-signet.png",
 	"size": 25,
     "on-click": "exec /home/agge/.config/rofi/powermenu/type-1/powermenu.sh"
-    },
+    },*/
+
     "hyprland/submap": {
     	"format": "{}",
 	"max-length": 8,
@@ -93,30 +95,30 @@
     },
     "cpu": {
 	"interval": 5,
-        "format": "「CPU 〜 {usage:2}% ・ {avg_frequency}GHz」",
+        "format": "{avg_frequency}GHz・{usage:2}%",
 	"tooltip": false
     },
     "memory": {
     	"interval": 5,
-        "format": "「RAM 〜 {percentage}% ・ {used}GiB」",
+        "format": "{used}GiB・{percentage}%",
 	"tooltip": true
     },
     "memory#swap": {
     	"interval": 5,
-	"format": "「Swap 〜 {swapUsed}GiB」"
+	"format": "swap・{swapUsed}GiB"
     },
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 90,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "「Temp 〜 {temperatureC}°C」",
+        "format": "{temperatureC}°C",
         "format-icons": ["", "", ""]
     },
     "network": {
     	"interval": 5,
         //"interface": "enp0s31f6", // (Optional) To force the use of this interface
-        "format": "「{ifname} 〜 {bandwidthDownBits} dl ・ {bandwidthUpBits} up」",
+        "format": "{bandwidthDownBits} dl・{bandwidthUpBits} up",
         //"tooltip-format": "{ipaddr} via {gwaddr} ",
         //"format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -127,20 +129,20 @@
     //},
     "wireplumber": {
         "format": "{volume}% {icon}",
-	"format-muted": "",
+	"format-muted": "🔇",
 	"on-click": "helvum",
-	"format-icons": ["", "", ""],
+	"format-icons": ["🔈", "🔉", "🔊"],
 	"max-volume": 100,
 	"scroll-step": 0.2
     },
     "disk": {
     	"interval": 10,
-	"format": "「Disk 〜 {percentage_used}% ・ {free}」",
+	"format": "{free}・{percentage_used}%",
 	"path": "/"
     },
     "user": {
     	"interval": 60,
-	"format": "「Uptime 〜 {work_H} hrs」",
+	"format": "{work_H} hrs",
 	"icon": true
     },
     "wlr/taskbar": {
@@ -168,7 +170,7 @@
     "spacing": 0, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["image#gentoo", "hyprland/submap", "hyprland/window"],
+    "modules-left": ["hyprland/submap", "hyprland/window"],
     //"modules-center":
     "modules-right": [
     	//"hyprland/language",
@@ -185,11 +187,13 @@
     ],
 // Modules configuration
     // Modules Left
-    "image#gentoo": {
+
+    /*"image#gentoo": {
 	"path": "/home/agge/Downloads/gentoo-signet.png",
 	"size": 25,
     "on-click": "exec /home/agge/.config/rofi/powermenu/type-1/powermenu.sh"
-    },
+    },*/
+
    "hyprland/submap": {
     	"format": "{}",
 	"max-length": 8,

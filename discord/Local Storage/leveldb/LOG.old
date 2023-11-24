@@ -1,9 +1,0 @@
-2023/11/02-18:29:02.386 3904 Reusing MANIFEST /home/agge/.config/discord/Local Storage/leveldb/MANIFEST-000001
-2023/11/02-18:29:02.387 3904 Recovering log #414
-2023/11/02-18:29:02.387 3904 Reusing old log /home/agge/.config/discord/Local Storage/leveldb/000414.log 
-2023/11/02-18:34:39.767 3c8c Level-0 table #420: started
-2023/11/02-18:34:39.803 3c8c Level-0 table #420: 2075951 bytes OK
-2023/11/02-18:34:39.818 3c8c Delete type=0 #414
-2023/11/02-18:55:44.068 3c8c Level-0 table #422: started
-2023/11/02-18:55:44.093 3c8c Level-0 table #422: 1984255 bytes OK
-2023/11/02-18:55:44.106 3c8c Delete type=0 #419

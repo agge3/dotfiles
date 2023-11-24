@@ -26,3 +26,6 @@ DP-3 Width 2560x1440 DP-3=388
 [MainWindow]
 MenuBar=Disabled
 ToolBarsMovable=Disabled
+
+[Search]
+Location=Everywhere
