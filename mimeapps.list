@@ -1,10 +1,12 @@
 [Default Applications]
-text/html=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/unknown=firefox.desktop
-x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
+text/html=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/about=firefox.desktop;
+x-scheme-handler/unknown=firefox.desktop;
+x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop;
+inode/directory=thunar.desktop;
 
 [Added Associations]
 image/png=org.kde.gwenview.desktop;okularApplication_kimgio.desktop;
+image/jpeg=org.kde.gwenview.desktop;
