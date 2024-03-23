@@ -8,5 +8,9 @@ x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop;
 inode/directory=thunar.desktop;
 
 [Added Associations]
-image/png=org.kde.gwenview.desktop;okularApplication_kimgio.desktop;
+image/png=org.kde.gwenview.desktop;krita_png.desktop;okularApplication_kimgio.desktop;
 image/jpeg=org.kde.gwenview.desktop;
+application/pdf=firefox.desktop;org.libreoffice.LibreOffice.draw.desktop;okularApplication_pdf.desktop;
+text/plain=org.kde.kate.desktop;emacs.desktop;
+text/markdown=okularApplication_txt.desktop;
+image/svg+xml=org.kde.kolourpaint.desktop;
