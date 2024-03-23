@@ -1,9 +1,0 @@
-[2024-02-29 01:56:16.868][verbose] Tunnel state: disconnected
-[2024-02-29 01:56:16.869][verbose] Initial: Wrong content height: 593, expected 568
-[2024-02-29 01:56:16.880][error] Failed to update the location: No connection established to daemon
-[2024-02-29 01:56:16.880][error] Failed to update the location: No connection established to daemon
-[2024-02-29 01:59:13.429][verbose] Tunnel state: disconnected
-[2024-02-29 02:08:07.384][verbose] Tunnel state: connecting
-[2024-02-29 02:08:07.653][verbose] Tunnel state: connected
-[2024-02-29 17:30:15.835][verbose] Tunnel state: disconnecting
-[2024-02-29 17:30:16.034][verbose] Tunnel state: disconnected
