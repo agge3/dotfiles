@@ -1,18 +1,11 @@
-## on user login...
-# Launch Hyprland after logging into the first TTY
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    dbus-run-session Hyprland
-    #-- -keeptty -nolisten tcp > ~/.wayland.log 2>&1
-fi
+## Wayland
+source $HOME/.config/scripts/wayland.sh
 
-# Ensure XDG_RUNTIME_DIR is set
-# gentoo wiki XDG_RUNTIME_DIR for hyprland/pipewire
-if test -z "$XDG_RUNTIME_DIR"; then
-    export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
-fi
+## X11
+#source $HOME/.config/scripts/x11.sh
 
-# zsh envvar...
-# history config
+## zsh environment variables
+# History config
 #export HISTFILE="$HOME/.zsh_history" # default location
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -21,49 +14,21 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY_TIME
 
-# envvar...
-export GDK_BACKEND=wayland,x11
-#export DISPLAY=${WAYLAND_DISPLAY}
-export QT_QPA_PLATFORM=wayland,xcb
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
-export QT_APA_PLATFORMTHEME=qt5ct
-export SDL_VIDEODRIVER=wayland
-export CLUTTER_BACKEND=wayland
+## Miscellaneous environment variables
+export EDITOR=nvim
 
-export XDG_CURRENT_DESKTOP=Hyprland
-export XDG_CURRENT_TYPE=wayland
-export XDG_SESSION_DESKTOP=Hyprland
-
-# Application Themes
-export GTK_THEME=Adwaita
-export QT_STYLE_OVERRIDE=adwaita
-
-export XCURSOR_SIZE=24
-
-export KITTY_ENABLE_WAYLAND=1
-
-export MOZ_ENABLE_WAYLAND=1
-export MOZ_WAYLAND_USE_VAAPI=1
-export MOZ_DBUS_REMOTE=1
-
-# fcitx IME JP envvar
+## Japanese IME fcitx environment variables
 export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx
 
-# hypr ecosystem envvar
-export HYPRCURSOR_THEME=rose-pine-hyprcursor
-export HYPRCURSOR_SIZE=24
-#export XCURSOR_THEME=rose-pine-xcursor
-#export XCURSOR_SIZE=24
-#gsettings set org.gnome.desktop.interface cursor-theme rose-pine-xcursor
+## Application themes
+export GTK_THEME=Adwaita
+export QT_STYLE_OVERRIDE=adwaita
+export XCURSOR_SIZE=24
 
-export EDITOR=nvim
-
-# gtk settings...
+## GTK settings
 gsettings set org.gnome.desktop.interface gtk-theme adwaita
-# END ##
 
 ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
