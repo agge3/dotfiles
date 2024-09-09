@@ -5,6 +5,7 @@
 !.gitignore
 
 # Include setup
+!README.md
 !install.sh
 
 # Include only specified
