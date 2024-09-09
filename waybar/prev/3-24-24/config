@@ -1,0 +1,307 @@
+[{
+    "output": "DP-2",
+
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 35, // Waybar height (to be removed for auto height)
+
+    // "width": 1440, // Waybar width
+
+    "spacing": 0, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+    	//"hyprland/language",
+	"network",
+	"disk",
+	//"memory#swap",
+	"memory",
+	"cpu",
+	"temperature",
+	"tray",
+    //"wlr/taskbar",
+	"wireplumber",
+	"user",
+	"clock"
+    ],
+// Modules configuration
+    // Modules Left
+
+    /*"image#gentoo": {
+	"path": "/home/agge/Downloads/gentoo-signet.png",
+	"size": 25,
+    "on-click": "exec /home/agge/.config/rofi/powermenu/type-1/powermenu.sh"
+    },*/
+
+    "hyprland/submap": {
+    	"format": "{}",
+	"max-length": 8,
+	"tooltip": true
+    },
+    "hyprland/window": {
+	"format": "{}",
+	"seperate-outputs": false
+    },
+    // Modules Center
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "hyprland/workspaces": {
+    	"format": "{icon}",
+	"sort-by-number": true,
+	"on-click": "activate",
+    	"persistent-workspaces": {
+		"1": ["DP-2"],
+		"2": ["DP-2"],
+		"3": ["DP-2"],
+		"4": ["DP-2"],
+		"5": ["DP-2"],
+		"6": ["DP-2"],
+		"7": ["DP-2"],
+		"8": ["DP-2"],
+		"9": ["DP-2"],
+		"10": ["HDMI-A-1"]
+	},
+	"format-icons": {
+		"1": "一",
+		"2": "二",
+		"3": "三",
+		"4": "四",
+		"5": "五",
+		"6": "六",
+		"7": "七",
+		"8": "八",
+		"9": "九",
+		"10": "零",
+        //"focused": "瞩",
+		"urgent": "⚠️ "
+	}
+    },
+    // Modules Right
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 5
+    },
+    "cpu": {
+	"interval": 5,
+        "format": "{avg_frequency}GHz・{usage:2}%",
+	"tooltip": false
+    },
+    "memory": {
+    	"interval": 5,
+        "format": "{used}GiB・{percentage}%",
+	"tooltip": true
+    },
+    "memory#swap": {
+    	"interval": 5,
+	"format": "swap・{swapUsed}GiB"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 90,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+    "network": {
+    	"interval": 5,
+        //"interface": "enp0s31f6", // (Optional) To force the use of this interface
+        "format": "{bandwidthDownBits} dl・{bandwidthUpBits} up",
+        //"tooltip-format": "{ipaddr} via {gwaddr} ",
+        //"format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    //"hyprland/language": {
+    	//"format": "Lang: {}"
+    //},
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+	"format-muted": "🔇",
+	"on-click": "helvum",
+	"format-icons": ["🔈", "🔉", "🔊"],
+	"max-volume": 100,
+	"scroll-step": 0.2
+    },
+    "disk": {
+    	"interval": 10,
+	"format": "{free}・{percentage_used}%",
+	"path": "/"
+    },
+    "user": {
+    	"interval": 60,
+	"format": "{work_H} hrs",
+	"icon": true
+    },
+    "wlr/taskbar": {
+        "all-outputs": "true",
+        "format": "{icon}",
+        "icon-size": 14,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "kitty"
+        ]
+    }
+
+},
+{
+    "output": "HDMI-A-1",
+
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+
+    // "width": 1280, // Waybar width
+
+    "spacing": 0, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": ["hyprland/submap", "hyprland/window"],
+    //"modules-center":
+    "modules-right": [
+    	//"hyprland/language",
+	//"network",
+	//"cpu",
+	//"memory",
+	//"disk",
+	"temperature",
+	//"memory#swap",
+	"user",
+	"wireplumber",
+	"tray",
+	"clock"
+    ],
+// Modules configuration
+    // Modules Left
+
+    /*"image#gentoo": {
+	"path": "/home/agge/Downloads/gentoo-signet.png",
+	"size": 25,
+    "on-click": "exec /home/agge/.config/rofi/powermenu/type-1/powermenu.sh"
+    },*/
+
+   "hyprland/submap": {
+    	"format": "{}",
+	"max-length": 8,
+	"tooltip": true
+    },
+    "hyprland/window": {
+	"format": "{}",
+	"seperate-outputs": false
+    },
+    // Modules Center
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "hyprland/workspaces": {
+    	"format": "{icon}",
+	"sort-by-number": true,
+	"on-click": "activate",
+    	"persistent-workspaces": {
+		"1": ["DP-2"],
+		"2": ["DP-2"],
+		"3": ["DP-2"],
+		"4": ["DP-2"],
+		"5": ["DP-2"],
+		"6": ["DP-2"],
+		"7": ["DP-2"],
+		"8": ["DP-2"],
+		"9": ["DP-2"],
+		"10": ["HDMI-A-1"]
+	},
+	"format-icons": {
+		"1": "一",
+		"2": "二",
+		"3": "三",
+		"4": "四",
+		"5": "五",
+		"6": "六",
+		"7": "七",
+		"8": "八",
+		"9": "九",
+		"10": "零",
+        //"focused": "瞩",
+		"urgent": "⚠️ "
+	}
+    },
+    // Modules Right
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 5
+    },
+    "cpu": {
+	"interval": 5,
+        "format": "「CPU 〜 {usage:2}% ・ {avg_frequency}GHz」",
+	"tooltip": false
+    },
+    "memory": {
+    	"interval": 5,
+        "format": "「RAM 〜 {percentage}% ・ {used}GiB」",
+	"tooltip": true
+    },
+    "memory#swap": {
+    	"interval": 5,
+	"format": "「Swap 〜 {swapUsed}GiB」"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 90,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "「Temp 〜 {temperatureC}°C」",
+        "format-icons": ["", "", ""]
+    },
+    "network": {
+    	"interval": 5,
+        //"interface": "enp0s31f6", // (Optional) To force the use of this interface
+        "format": "「{ifname} 〜 {bandwidthDownBits} dl ・ {bandwidthUpBits} up」",
+        //"tooltip-format": "{ipaddr} via {gwaddr} ",
+        //"format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    //"hyprland/language": {
+    	//"format": "Lang: {}"
+    //},
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+	"format-muted": "",
+	"on-click": "helvum",
+	"format-icons": ["", "", ""],
+	"max-volume": 100,
+	"scroll-step": 0.2
+    },
+    "disk": {
+    	"interval": 10,
+	"format": "「Disk 〜 {percentage_used}% ・ {free}」",
+	"path": "/"
+    },
+    "user": {
+    	"interval": 60,
+	"format": "「Uptime 〜 {work_H} hrs」",
+	"icon": true
+    }
+}]

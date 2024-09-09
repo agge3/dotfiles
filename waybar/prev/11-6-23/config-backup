@@ -1,0 +1,130 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 5, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["clock", "image1", "hyprland/submap", "hyprland/window"],
+    "modules-center": ["wlr/workspaces"],
+    "modules-right": [
+    	"hyprland/language",
+	"wireplumber",
+	"idle_inhibitor",
+	"temperature",
+	"network",
+	"disk",
+	"memory",
+	"cpu",
+	"tray",
+	"user"
+    ],
+// Modules configuration
+    // Modules Left
+    "image1": {
+	"path": "~/Downloads/gentoo-signet.png",
+	"size": 16
+    },
+    "hyprland/submap": {
+    	"format": "{}",
+	"max-length": 8,
+	"tooltip": true
+    },
+    "hyprland/window": {
+	"format": "{}",
+	"seperate-outputs": false
+    },
+    // Modules Center
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "wlr/workspaces": {
+    	"format": "{icon}",
+	"sort-by-number": true,
+	"on-click": "activate",
+    	"persistent_workspaces": {
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+		"5": [],
+		"6": [],
+		"7": [],
+		"8": [],
+		"9": [],
+		"10": []
+	},
+	"format-icons": {
+		"1": "一",
+		"2": "二",
+		"3": "三",
+		"4": "四",
+		"5": "五",
+		"6": "六",
+		"7": "七",
+		"8": "八",
+		"9": "九",
+		"10": "十",
+		"urgent": "⚠️ "
+	}
+    },	
+    // Modules Right 
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "cpu": {
+	"interval": 2,
+        "format": "CPU: {usage}% {load} {avg_frequency} GHz",
+        "tooltip": true
+    },
+    "memory": {
+    	"interval": 15,
+        "format": "RAM: {percentage}% {swapPercentage}% swap | {used}gb {swapUsed}gb swap",
+	"tooltip": true
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "network": {
+        "interface": "enp0s31f6", // (Optional) To force the use of this interface
+        "format-ethernet": "{ifname} | {bandwidthDownBits} DL {bandwitchUpBits} UP {bandwidthTotalBits} TOTAL",
+        "tooltip-format": "{ipaddr} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "hyprland/language": {
+    	"format": "Lang: {}"
+    },
+    //"wireplumber": {
+        //"format": "{volume}% {icon}",
+	//"format-muted": "",
+	//"on-click": "helvum",
+	//"format-icons": ["", "", ""]}"jack",
+    //},
+    "disk": {
+    	"interval": 60,
+	"format": "{used} used | {free} free",
+	"path": "/"
+    }
+    //"user": {
+    	//"interval": 60,
+	//"format": "user: {user} | uptime: {work_H}",
+	//"open-path": $HOME
+    //}
+}

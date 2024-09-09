@@ -1,0 +1,240 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    /*background: #2b002f;*/
+    background: rgba(7, 0, 14, 0.82);
+    color: white;
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* Each module */
+#image.gentoo {
+    padding: 6px;
+}
+#battery,
+#clock {
+    padding-left: 0px;
+    padding-right: 8px;
+}
+#cpu {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#custom-keyboard-layout,
+#memory {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#mode,
+#network {
+    padding-left: 10px;
+    padding-right: 3px;
+}
+#disk {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#temperature {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#memory#swap {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#user {
+    padding-left: 3px;
+    padding-right: 0px;
+}
+#wireplumber {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#temperature,
+#tray {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    color: orange;
+}
+
+#battery.critical {
+    color: red;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#cpu {
+  /* No styles */
+}
+
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: orange;
+}
+
+#memory.critical {
+    color: red;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#mode {
+    background: #64727D;
+    border-top: 2px solid white;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+}
+
+#network {
+    /* No styles */
+}
+
+#network.disconnected {
+    color: orange;
+}
+
+#pulseaudio {
+    /* No styles */
+}
+
+#pulseaudio.muted {
+    /* No styles */
+}
+
+#custom-spotify {
+    color: rgb(102, 220, 105);
+}
+
+#temperature {
+    /* No styles */
+}
+
+#temperature.critical {
+    color: red;
+}
+
+#tray {
+    /* No styles */
+}
+
+#window {
+    color: #39FF14;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+#workspaces button {
+    /*border-top: 2px solid transparent;
+     To compensate for the top border and still have vertical centering */
+    font-family: 'Noto Sans CJK JP';
+    font-size: 17;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fe30a5;
+}
+#workspaces button.active{
+    color: #39FF14;
+}
+#workspaces button.focused {
+    border-color: #4c7899;
+    color: white;
+    background-color: #285577;
+}
+#workspaces button.urgent {
+    border-color: #c9545d;
+    color: #c9545d;
+}
+#workspace button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}

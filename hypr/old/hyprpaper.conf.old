@@ -1,0 +1,32 @@
+#preload = /home/agge/wallpaper/dp-2_wallpaper.jpg
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/1033287_49040345768_o.jpg
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---286568-baffu-blue_eyes-breasts-cleavage-dress-feathers-gloves-green_eyes-green_hair-group-hat-idolmaster-long_hair-red_eyes-shorts-thighhighs-wings_49040353028_o.png
+# bae graphic style
+preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/balloon-5120x2880-girl-telephone-pole-4k-6k-18558_49040355748_o.jpg
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/1011243_49040868646_o.jpg
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---199996-aqua_hair-bell-bow-dress-flowers-gloves-hatsune_miku-headdress-headphones-iritoa-long_hair-rose-socks-thighhighs-tie-twintails-vocaloid_49040371278_o.jpg
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---239505-black_hair-boots-breasts-brown_eyes-cleavage-gray_hair-group-headphones-hoodie-hplay-kemono_friends-kneehighs-red_eyes-skirt-thighhighs_49040371623_o.jpg
+# BAEST KAYLA MIKU OWOWOW
+preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/684896_49040378423_o.png
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---282293-halo-kogecha_coge_ch-original-wings_49041100252_o.jpg
+# grey shooter girls waifu kayla(s)owo!
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---269596-2girls-aircraft-armor-brown_hair-building-city-combat_vehicle-green_eyes-gun-mask-military-original-ponytail-short_hair-sword-vectorek-weapon-1_49040390238_o.png
+# blushie girls laying in grass waifu kayla(s)owo!
+#preload = /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/konachancom---291872-2girls-anthropomorphism-autumn-azur_lane-barefoot-brown_hair-long_hair-pdxen-ponytail-shoujo_ai-thighhighs-white_hair-yellow_eyes-zuikaku_azur_la_49041108342_o.png
+# if more than one preload is desired then continue to preload other backgrounds
+# preload = /path/to/next_image.png
+# .. more preloads
+
+# set the default wallpaper(s) seen on inital workspace(s) --depending on the number of monitors used
+
+# uncomment for iGPU
+#wallpaper = DP-1, /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/684896_49040378423_o.png
+#wallpaper = HDMI-A-2, /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/balloon-5120x2880-girl-telephone-pole-4k-6k-18558_49040355748_o.jpg
+
+# uncomment for GPU
+wallpaper = DP-2, /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/684896_49040378423_o.png
+wallpaper = HDMI-A-1, /home/agge/wallpaper/20231106d6ccc44799e4eea62dd3701be0899e8ce0158ee87c13baeb1c2626f78c749b41/balloon-5120x2880-girl-telephone-pole-4k-6k-18558_49040355748_o.jpg
+
+# if more than one monitor in use, can load a 2nd image
+# wallpaper = monitor2,/path/to/next_image.png
+# .. more monitors

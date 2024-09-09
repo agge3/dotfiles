@@ -1,0 +1,26 @@
+# Exclude everything
+/*
+
+# Include .gitignore
+!.gitignore
+
+# Include setup
+!install.sh
+
+# Include only specified
+!awesome
+!btop
+!doom
+!hypr
+!mimeapps.list
+!neofetch
+!nvim
+!racket
+!rofi
+!wallpaper
+!waybar
+!.zshrc
+!.zprofile
+!.p10k.zsh
+!.bashrc
+!.bash_profile

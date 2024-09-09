@@ -1,0 +1,40 @@
+[Default Applications]
+text/html=firefox-bin.desktop
+x-scheme-handler/http=firefox-bin.desktop
+x-scheme-handler/https=firefox-bin.desktop
+x-scheme-handler/about=firefox.desktop;
+x-scheme-handler/unknown=firefox.desktop;
+x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
+inode/directory=thunar.desktop;
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_home_agge_java_eclipse_.desktop
+x-scheme-handler/stabilitymatrix=stabilitymatrix.desktop
+x-scheme-handler/chrome=firefox-bin.desktop
+application/x-extension-htm=firefox-bin.desktop
+application/x-extension-html=firefox-bin.desktop
+application/x-extension-shtml=firefox-bin.desktop
+application/xhtml+xml=firefox-bin.desktop
+application/x-extension-xhtml=firefox-bin.desktop
+application/x-extension-xht=firefox-bin.desktop
+
+[Added Associations]
+image/png=ahoviewer.desktop;org.kde.gwenview.desktop;zzz-gimp.desktop;krita_png.desktop;okularApplication_kimgio.desktop;
+image/jpeg=org.kde.gwenview.desktop;
+application/pdf=firefox-bin.desktop;firefox.desktop;org.libreoffice.LibreOffice.draw.desktop;okularApplication_pdf.desktop;
+text/plain=org.kde.kate.desktop;emacs.desktop;
+text/markdown=okularApplication_txt.desktop;
+image/svg+xml=org.kde.kolourpaint.desktop;
+video/mp4=vlc.desktop;
+video/x-matroska=vlc.desktop;
+text/x-java=org.kde.kate.desktop;
+application/x-shellscript=org.kde.kate.desktop;wine-extension-txt.desktop;
+text/x-gradle=org.kde.kate.desktop;
+x-scheme-handler/http=firefox-bin.desktop;
+x-scheme-handler/https=firefox-bin.desktop;
+x-scheme-handler/chrome=firefox-bin.desktop;
+text/html=firefox-bin.desktop;
+application/x-extension-htm=firefox-bin.desktop;
+application/x-extension-html=firefox-bin.desktop;
+application/x-extension-shtml=firefox-bin.desktop;
+application/xhtml+xml=firefox-bin.desktop;
+application/x-extension-xhtml=firefox-bin.desktop;
+application/x-extension-xht=firefox-bin.desktop;
