@@ -1,26 +1,15 @@
-local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
 local naughty = require("naughty")
-local util = require("util")
-local helpers = require("helpers")
-local config = require("config")
-local error = require("error")
-local signals = require("signals")
-local screen = require("screen")
-local rules = require("rules")
-local menu = require("menu")
-local wibox = require("wibox")
+local gears = require("gears")
+local beautiful = require("beautiful")
 local apps = require("apps")
 local decorations = require("decorations")
-local icons = require("icons")
-local notifications = require("notifications")
+local config = require("config")
+local helpers = require("helpers")
+local menu = require("menu")
+local xrandr = require("xrandr")
 
 local keys = {}
-
-local root = "~/.config/awesome"
 
 -- Mod keys
 command = "Mod4"
@@ -68,6 +57,41 @@ keys.desktopbuttons = gears.table.join(
 
 -- Key bindings:
 keys.globalkeys = gears.table.join(
+    -- Layouts:
+	-- Max layout
+    -- Single tap: Set max layout
+    -- Double tap: Also disable floating for ALL visible clients in the tag
+    awful.key({ command }, "w",
+        function()
+            awful.layout.set(awful.layout.suit.max)
+            helpers.single_double_tap(
+                nil,
+                function()
+                    local clients = awful.screen.focused().clients
+                    for _, c in pairs(clients) do
+                        c.floating = false
+                    end
+                end)
+        end,
+        {description = "set max layout", group = "tag"}),
+
+    -- Tiling
+    -- Single tap: Set tiled layout
+    -- Double tap: Also disable floating for ALL visible clients in the tag
+    awful.key({ command }, "s",
+        function()
+            awful.layout.set(awful.layout.suit.tile)
+            helpers.single_double_tap(
+                nil,
+                function()
+                    local clients = awful.screen.focused().clients
+                    for _, c in pairs(clients) do
+                        c.floating = false
+                    end
+                end)
+        end,
+        {description = "set tiled layout", group = "tag"}),
+
     -- Focus client by direction (hjkl keys).
     awful.key({ command }, "j",
         function()
@@ -112,61 +136,22 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "focus right", group = "client"}),
 
-    -- Window switcher
-    awful.key({ command }, "Tab",
-        function ()
-            window_switcher_show(awful.screen.focused())
-        end,
-        {description = "activate window switcher", group = "client"}),
-
-    -- Focus client by index (cycle through clients).
+    -- Focus client by index (cycle through clients). Only if fullscreen.
     awful.key({ command, option }, "Right",
-        function ()
-            awful.client.focus.byidx(1)
-        end,
+		function() 
+			if helpers.is_fullscreen_client_on_tag() then
+            	awful.client.focus.byidx(1)
+			end
+		end,
         {description = "focus next by index", group = "client"}),
 
     awful.key({ command, option }, "Left",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
+		function() 
+			if helpers.is_fullscreen_client_on_tag() then
+            	awful.client.focus.byidx(-1)
+			end
+		end,
         {description = "focus next by index", group = "client"}),
-
-    -- Increase/decrease gaps.
-    awful.key({ command }, "equals",
-        function ()
-            awful.tag.incgap(5, nil)
-        end,
-        {description = "increment gaps size for the current tag", group = "gaps"}
-    ),
-    awful.key({ command }, "minus",
-        function ()
-            awful.tag.incgap(-5, nil)
-        end,
-        {description = "decrement gap size for the current tag", group = "gaps"}
-    ),
-
-    -- Close client.
-    awful.key({ command, }, "q", 
-		function (c) 
-			c:kill() 
-		end,
-        {description = "close", group = "client"}),
-    awful.key({ option }, "F4", 
-		function (c) 
-			c:kill() 
-		end,
-        {description = "close", group = "client"}),
-    -- Kill all visible clients for the current tag.
-    awful.key({ command, option }, "q",
-        function ()
-            local clients = awful.screen.focused().clients
-            for _, c in pairs(clients) do
-                c:kill()
-            end
-        end,
-        {description = "kill all visible clients for the current tag", group = "gaps"}
-    ),
 
     -- Resize focused client or layout factor.
     awful.key({ command, ctrl }, "Down", function (c)
@@ -193,126 +178,66 @@ keys.globalkeys = gears.table.join(
     awful.key({ command, ctrl }, "l", function (c)
         helpers.resize_dwim(client.focus, "right")
     end),
-    
-    -- Urgent or Undo:
-    -- Jump to urgent client or (if there is no such client) go back
-    -- to the last tag
-    --awful.key({ command,           }, "u",
-    --    function ()
-    --        uc = awful.client.urgent.get()
-    --        -- If there is no urgent client, go back to last tag
-    --        if uc == nil then
-    --            awful.tag.history.restore()
-    --        else
-    --            awful.client.urgent.jumpto()
-    --        end
-    --    end,
-    --    {description = "jump to urgent client", group = "client"}),
 
-    --awful.key({ command,           }, "x",
-    --    function ()
-    --        awful.tag.history.restore()
-    --    end,
-    --    {description = "go back", group = "tag"}),
-
-    -- Spawn terminal.
-    awful.key({ command }, "Return", 
-		function () 
-			awful.spawn(config.user.terminal) 
-		end,
-        {description = "open a terminal", group = "launcher"}),
-    -- Spawn floating terminal.
-    awful.key({ command, shift }, "Return", 
-		function()
-        	awful.spawn(config.floating_terminal, {floating = true})
+    -- Number of master clients.
+    awful.key({ command, option, ctrl }, "h",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
         end,
-        {description = "spawn floating terminal", group = "launcher"}),
-	-- Spawn ssh server terminal.
-	aweful.key({ command, option }, "Return", 
-		function()
-			aweful.spawn("/home/agge/.config/hypr/hyprland/scripts/kitty-ssh-server.sh")
-		end
-		{ description = "open a ssh server terminal", group = "launcher" }),
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ command, option, ctrl }, "l",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
+    awful.key({ command, option, ctrl }, "Left",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ command, option, ctrl }, "Right",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
 
-    -- Reload Awesome
-    awful.key({ command, option, ctrl, shift }, "r", 
-		awesome.restart,
-        {description = "reload awesome", group = "awesome"}),
+    -- Number of columns.
+    awful.key({ command, option, ctrl }, "k",   
+        function () 
+            awful.tag.incncol( 1, nil, true)
+        end,
+        {description = "increase the number of columns", group = "layout"}),
+    awful.key({ command, option, ctrl }, "j",   
+        function () 
+            awful.tag.incncol( -1, nil, true)
+        end,
+        {description = "decrease the number of columns", group = "layout"}),
+    awful.key({ command, option, ctrl }, "Up",   
+        function () 
+            awful.tag.incncol( 1, nil, true)
+        end,
+        {description = "increase the number of columns", group = "layout"}),
+    awful.key({ command, option, ctrl }, "Down",   
+        function () 
+            awful.tag.incncol( -1, nil, true)
+        end,
+        {description = "decrease the number of columns", group = "layout"}),
 
-    -- Quit Awesome
-	local command = "loginctl kill-session $(loginctl | grep tty1 | awk '{print $1}')"
-    awful.key({ }, "XF86PowerOff",
+    -- Increase/decrease gaps.
+    awful.key({ command }, "equals",
         function ()
-			aweful.spawn.easy_async_with_shell(command)
+            awful.tag.incgap(5, nil)
         end,
-        {description = "quit awesome", group = "awesome"}),
-
-    -- Number of master clients
-    --awful.key({ command, option }, "h",   
-    --    function () 
-    --        awful.tag.incnmaster( 1, nil, true) 
-    --    end,
-    --    {description = "increase the number of master clients", group = "layout"}),
-    --awful.key({ command, option }, "l",   
-    --    function () 
-    --        awful.tag.incnmaster(-1, nil, true) 
-    --    end,
-    --    {description = "decrease the number of master clients", group = "layout"}),
-    --awful.key({ command, option }, "Left",   
-    --    function () 
-    --        awful.tag.incnmaster( 1, nil, true) 
-    --    end,
-    --    {description = "increase the number of master clients", group = "layout"}),
-    --awful.key({ command, option }, "Right",   
-    --    function () 
-    --        awful.tag.incnmaster(-1, nil, true) 
-    --    end,
-    --    {description = "decrease the number of master clients", group = "layout"}),
-
-    ---- Number of columns
-    --awful.key({ command, option }, "k",   
-    --    function () 
-    --        awful.tag.incncol( 1, nil, true)
-    --    end,
-    --    {description = "increase the number of columns", group = "layout"}),
-    --awful.key({ command, option }, "j",   
-    --    function () 
-    --        awful.tag.incncol( -1, nil, true)
-    --    end,
-    --    {description = "decrease the number of columns", group = "layout"}),
-    --awful.key({ command, option }, "Up",   
-    --    function () 
-    --        awful.tag.incncol( 1, nil, true)
-    --    end,
-    --    {description = "increase the number of columns", group = "layout"}),
-    --awful.key({ command, option }, "Down",   
-    --    function () 
-    --        awful.tag.incncol( -1, nil, true)
-    --    end,
-    --    {description = "decrease the number of columns", group = "layout"}),
-
-    awful.key({ command, shift }, "n",
+        {description = "increment gaps size for the current tag", group = "gaps"}
+    ),
+    awful.key({ command }, "minus",
         function ()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-                client.focus = c
-            end
+            awful.tag.incgap(-5, nil)
         end,
-        {description = "restore minimized", group = "client"}),
+        {description = "decrement gap size for the current tag", group = "gaps"}
+    ),
 
-    -- Run menu
-    awful.key({ command }, "d",
-        function()
-            awful.spawn.with_shell("~/.config/rofi/launchers/type-7/launcher.sh")
-        end,
-        {description = "rofi launcher", group = "launcher"}),
-
-    -- Menubar
-    --awful.key({ command, ctrl }, "b", function() menubar.show() end,
-    --{description = "show the menubar", group = "launcher"}),
-
-    -- Brightness
+    -- Brightness:
     awful.key({ }, "XF86MonBrightnessDown",
         function()
             awful.spawn.with_shell("light -U 10")
@@ -324,7 +249,7 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "increase brightness", group = "brightness"}),
 
-    -- Volume control with volume keys
+    -- Volume control with volume keys:
     awful.key({ }, "XF86AudioMute",
         function()
             helpers.volume_control(0)
@@ -341,14 +266,56 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "raise volume", group = "volume"}),
 
-    -- Mute microphone
+    -- Mute microphone:
     awful.key({ }, "XF86AudioMicMute",
         function()
             awful.spawn.with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
         end,
         {description = "(un)mute microphone", group = "volume"}),
 
-    -- Screenshots
+    -- Close client:
+    awful.key({ command, }, "q", 
+		function () 
+			local c = client.focus
+			if c then
+				c:kill() 
+			end
+		end,
+        {description = "close", group = "client"}),
+    awful.key({ option }, "F4", 
+		function () 
+			local c = client.focus
+			if c then
+				c:kill() 
+			end
+		end,
+        {description = "close", group = "client"}),
+    -- Kill all visible clients for the current tag.
+    awful.key({ command, option }, "q",
+        function ()
+            local clients = awful.screen.focused().clients
+            for _, c in pairs(clients) do
+                c:kill()
+            end
+        end,
+        {description = "kill all visible clients for the current tag", group = "gaps"}
+    ),
+
+    -- Reload Awesome:
+    awful.key({ command, option, ctrl }, "r", 
+		awesome.restart,
+        {description = "reload awesome", group = "awesome"}),
+
+    -- Quit Awesome:
+    awful.key({ }, "XF86PowerOff",
+        function ()
+			aweful.spawn.easy_async_with_shell(
+				"loginctl kill-session $(loginctl | grep tty1 | awk '{print $1}')"
+			)
+        end,
+        {description = "quit awesome", group = "awesome"}),
+
+    -- Screenshots:
     awful.key( { }, "Print", function() apps.screenshot("full") end,
         {description = "take full screenshot", group = "screenshots"}),
     awful.key( { command, shift }, "c", function() apps.screenshot("selection") end,
@@ -360,85 +327,132 @@ keys.globalkeys = gears.table.join(
     awful.key( { command, shift }, "Print", function() apps.screenshot("gimp") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
 
-    -- Media keys
+    -- Media keys:
     --awful.key({ command }, "F7", function() awful.spawn.with_shell("freeze firefox") end,
     --    {description = "send STOP signal to all firefox processes", group = "other"}),
     --awful.key({ command, shift }, "F7", function() awful.spawn.with_shell("freeze -u firefox") end,
     --    {description = "send CONT signal to all firefox processes", group = "other"}),
     --awful.key({ command }, "q", function() apps.scratchpad() end,
     --    {description = "scratchpad", group = "launcher"}),
-
-    -- Layouts:
-	-- Max layout
-    -- Single tap: Set max layout
-    -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ command }, "w",
-        function()
-            awful.layout.set(awful.layout.suit.max)
-            helpers.single_double_tap(
-                nil,
-                function()
-                    local clients = awful.screen.focused().clients
-                    for _, c in pairs(clients) do
-                        c.floating = false
-                    end
-                end)
+	
+    -- Urgent or undo:
+    -- Jump to urgent client or (if there is no such client) go back
+    -- to the last tag.
+	-- xxx no bind
+    awful.key({}, "",
+        function ()
+            uc = awful.client.urgent.get()
+            -- If there is no urgent client, go back to last tag.
+            if uc == nil then
+                awful.tag.history.restore()
+            else
+                awful.client.urgent.jumpto()
+            end
         end,
-        {description = "set max layout", group = "tag"}),
-
-    -- Tiling
-    -- Single tap: Set tiled layout
-    -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ command }, "s",
-        function()
-            awful.layout.set(awful.layout.suit.tile)
-            helpers.single_double_tap(
-                nil,
-                function()
-                    local clients = awful.screen.focused().clients
-                    for _, c in pairs(clients) do
-                        c.floating = false
-                    end
-                end)
+        {description = "jump to urgent client", group = "client"}),
+	-- xxx no bind
+    awful.key({}, "",
+        function ()
+            awful.tag.history.restore()
         end,
-        {description = "set tiled layout", group = "tag"}),
+        {description = "go back", group = "tag"}),
 
-    -- Set floating layout
+    -- Window switcher:
+    awful.key({ command }, "Tab",
+        function ()
+            window_switcher_show(awful.screen.focused())
+        end,
+        {description = "activate window switcher", group = "client"}),
+
+    -- Menubar
+    --awful.key({ command, ctrl }, "b", function() menubar.show() end,
+    --{description = "show the menubar", group = "launcher"}),
+
+    -- Run menu:
+    awful.key({ command }, "r",
+        function()
+            awful.spawn.with_shell(
+				"~/.config/rofi/launchers/type-7/launcher.sh"
+			)
+        end,
+        {description = "rofi launcher", group = "launcher"}),
+
+    -- Spawn terminal:
+    awful.key({ command }, "Return", 
+		function () 
+			awful.spawn(config.user.terminal) 
+		end,
+        {description = "open a terminal", group = "launcher"}),
+
+    -- Spawn floating terminal:
+    awful.key({ command, shift }, "Return", 
+		function()
+        	awful.spawn(config.floating_terminal, {floating = true})
+        end,
+        {description = "spawn floating terminal", group = "launcher"}),
+
+	-- Spawn ssh server terminal:
+	awful.key({ command, option }, "Return", 
+		function()
+			awful.spawn(
+				"/home/agge/.config/hypr/hyprland/scripts/kitty-ssh-server.sh"
+			)
+		end,
+		{ description = "open a ssh server terminal", group = "launcher" }),
+
+    -- Set floating layout:
     awful.key({ command, shift }, "s", function()
         awful.layout.set(awful.layout.suit.floating)
                                            end,
         {description = "set floating layout", group = "tag"}),
 
-	-- Spawn applications:
-    -- Spawn file manager
-    awful.key({ command }, "F2", apps.file_manager,
+	---- Spawn applications
+	-- Web-browser:
+    awful.key({ command }, "w", apps.browser,
+        {description = "web browser", group = "launcher"}),
+	
+    -- Spawn file manager:
+    awful.key({ command }, "e", apps.file_manager,
         {description = "file manager", group = "launcher"}),
-    -- Toggle wibar(s)
+
+    -- Toggle wibar(s).
     awful.key({ command }, "b", function() wibars_toggle() end,
         {description = "show or hide wibar(s)", group = "awesome"}),
-    -- Markdown input scratchpad (I for input)
-    -- For quickly typing markdown comments and pasting them in
-    -- the browser
-    awful.key({ command }, "i", apps.markdown_input,
-        {description = "markdown scratchpad", group = "launcher"}),
-    -- Editor
+
+    -- Editor:
     awful.key({ command }, "e", apps.editor,
         {description = "editor", group = "launcher"}),
-    -- Quick edit file
-    awful.key({ command, shift }, "e",
-        function()
-            awful.spawn.with_shell("rofi_edit")
-        end,
-        {description = "quick edit file", group = "launcher"}),
-    -- Rofi youtube search and playlist selector
+
+    -- Rofi youtube search and playlist selector.
     awful.key({ command }, "y", apps.youtube,
         {description = "youtube search and play", group = "launcher"}),
-    -- Spawn file manager
+
+    -- Spawn file manager.
     awful.key({ command, shift }, "f", apps.file_manager,
         {description = "file manager", group = "launcher"}),
-    -- Process monitor
-    awful.key({ command }, "p", apps.process_monitor,
-        {description = "process monitor", group = "launcher"})
+
+	-- Choose monitor config.
+	awful.key({ command, option, ctrl }, "m",
+		function()
+			xrandr.xrandr()
+		end,
+		{ description = "monitor config", group = "awesome"}),
+
+	-- Cycle through tags. If NOT fullscreen.
+    awful.key({ command, option }, "Left", 
+		function() 
+			if not helpers.is_fullscreen_client_on_tag() then
+				awful.tag.viewnext() 
+			end
+		end,
+        {description = "focus previous tag", group = "client"}),
+    awful.key({ command, option }, "Right", 
+		function() 
+			if not helpers.is_fullscreen_client_on_tag() then
+				awful.tag.viewprev() 
+			end
+		end,
+        {description = "focus next tag", group = "client"})
 )
 
 keys.clientkeys = gears.table.join(
@@ -479,7 +493,7 @@ keys.clientkeys = gears.table.join(
             end)
     end),
 
-    -- Relative move client
+    -- Relative move client.
     awful.key({ command, shift, ctrl }, "j", function (c)
         c:relative_move(0,  dpi(20), 0, 0)
     end),
@@ -505,13 +519,13 @@ keys.clientkeys = gears.table.join(
         c:relative_move(dpi( 20), 0, 0, 0)
     end),
 
-    -- Toggle titlebars (for focused client only)
+    -- Toggle titlebars (for focused client only).
     awful.key({ command,           }, "t",
         function (c)
             decorations.cycle(c)
         end,
         {description = "toggle titlebar", group = "client"}),
-    -- Toggle titlebars (for all visible clients in selected tag)
+    -- Toggle titlebars (for all visible clients in selected tag).
     awful.key({ command, shift }, "t",
         function (c)
             local clients = awful.screen.focused().clients
@@ -521,11 +535,10 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "toggle titlebar", group = "client"}),
 
-    -- Toggle fullscreen
+    -- Toggle fullscreen.
     awful.key({ command, }, "z",
-		function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
+		function ()
+			helpers.toggle_fullscreen_on_tag()
         end,
     	{description = "toggle fullscreen", group = "client"}),
 
@@ -568,7 +581,7 @@ keys.clientkeys = gears.table.join(
     awful.key({ command, ctrl }, "Return", function (c) c:swap(awful.client.getmaster()) end,
         {description = "move to master", group = "client"}),
 
-    -- Change client opacity
+	-- Change client opacity:
     awful.key({ ctrl, command }, "o",
         function (c)
             c.opacity = c.opacity - 0.1
@@ -580,32 +593,35 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "increase client opacity", group = "client"}),
 
-    -- Keep on top
+    -- Keep on top:
     awful.key({ command, }, "v", 
 		function (c) 
 			c.ontop = not c.ontop 
 		end,
         {description = "toggle keep on top", group = "client"}),
-    -- Sticky
+    -- Sticky:
     awful.key({ command, option }, "v", 
 		function (c) 
 			c.sticky = not c.sticky 
 		end,
         {description = "toggle sticky", group = "client"}),
 
-    -- Minimize
+    -- Minimize:
     awful.key({ command, option }, "x",
         function (c)
             c.minimized = true
         end,
         {description = "minimize", group = "client"}),
-
-    -- Maximize
+    -- Maximize:
     awful.key({ command, option }, "z",
-        function (c)
-            c.maximized = not c.maximized
+        function ()
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+                client.focus = c
+            end
         end,
-        {description = "(un)maximize", group = "client"}),
+        {description = "restore minimized", group = "client"})
 )
 
 -- Bind all key numbers to tags.
@@ -758,9 +774,7 @@ keys.taglist_buttons = gears.table.join(
         if client.focus then
             client.focus:toggle_tag(t)
         end
-    end),
-    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
+    end)
 )
 
 -- Mouse buttons on the primary titlebar of the window

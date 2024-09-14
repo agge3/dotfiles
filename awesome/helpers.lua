@@ -1,23 +1,12 @@
-local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
+local gears = require("gears")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local naughty = require("naughty")
-local util = require("util")
-local config = require("config")
-local error = require("error")
-local signals = require("signals")
-local screen = require("screen")
-local rules = require("rules")
-local keys = require("keys")
-local menu = require("menu")
 local wibox = require("wibox")
-local apps = require("apps")
-local decorations = require("decorations")
 local icons = require("icons")
 local notifications = require("notifications")
+local naughty = require("naughty")
 
 local helpers = {}
 
@@ -448,6 +437,35 @@ end
 function helpers.this_dir()
    local str = debug.getinfo(2, "S").source:sub(2)
    return str:match("(.*/)")
+end
+
+-- Returns TRUE if there's a fullscreen client on the currently focused tag.
+function helpers.is_fullscreen_client_on_tag()
+	local clients = awful.screen.focused().clients
+	local tag = client.focus and client.focus.first_tag or nil
+	for _, c in pairs(clients) do
+		-- xxx there's probably a more efficient way than a 2d array
+		for _, t in ipairs(c:tags()) do
+			if t == tag and c.fullscreen then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+-- Toggles fullscreen for all clients on the focused tag.
+function helpers.toggle_fullscreen_on_tag()
+	local clients = awful.screen.focused().clients
+	local tag = client.focus and client.focus.first_tag or nil
+	for _, c in pairs(clients) do
+		for _, t in ipairs(c:tags()) do
+			if t == tag then
+				c.fullscreen = not c.fullscreen
+				c:emit_signal("request::fullscreen", "toggle")
+			end
+		end
+	end
 end
 
 return helpers

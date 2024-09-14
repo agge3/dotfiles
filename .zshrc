@@ -1,5 +1,5 @@
 ## Wayland
-source $HOME/.config/scripts/wayland.sh
+#source $HOME/.config/scripts/wayland.sh
 
 ## X11
 #source $HOME/.config/scripts/x11.sh
@@ -14,21 +14,23 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY_TIME
 
-## Miscellaneous environment variables
+## Miscellaneous environment variables.
 export EDITOR=nvim
 
-## Japanese IME fcitx environment variables
+## Japanese IME fcitx environment variables.
 export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx
 
-## Application themes
+## Application themes:
 export GTK_THEME=Adwaita
 export QT_STYLE_OVERRIDE=adwaita
+export XCURSOR_THEME=rose-pine-xcursor
 export XCURSOR_SIZE=24
 
-## GTK settings
+## GTK settings:
 gsettings set org.gnome.desktop.interface gtk-theme adwaita
+gsettings set org.gnome.desktop.interface cursor-theme rose-pine-xcursor
 
 ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

@@ -1,22 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
 local naughty = require("naughty")
-local util = require("util")
-local helpers = require("helpers")
-local config = require("config")
-local signals = require("signals")
-local screen = require("screen")
-local rules = require("rules")
-local keys = require("keys")
-local menu = require("menu")
-local wibox = require("wibox")
-local apps = require("apps")
-local decorations = require("decorations")
-local icons = require("icons")
-local notifications = require("notifications")
 
 local error = {}
 
@@ -43,12 +27,13 @@ do
     end)
 end
 
-naughty.connect_signal("request::display_error", function(message, startup)
-    naughty.notification {
-        urgency = "critical",
-        title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
-        message = message
-    }
-end)
+-- xxx
+--naughty.connect_signal("request::display_error", function(message, startup)
+--    naughty.notification {
+--        urgency = "critical",
+--        title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
+--        message = message
+--    }
+--end)
 
 return error

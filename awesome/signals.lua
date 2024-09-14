@@ -1,22 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
-local naughty = require("naughty")
-local util = require("util")
-local helpers = require("helpers")
-local config = require("config")
-local error = require("error")
-local screen = require("screen")
-local rules = require("rules")
-local keys = require("keys")
-local menu = require("menu")
-local wibox = require("wibox")
-local apps = require("apps")
-local decorations = require("decorations")
-local icons = require("icons")
-local notifications = require("notifications")
 
 local signals = {}
 
@@ -54,10 +38,18 @@ client.connect_signal("manage", function(c)
     end
 end)
 
-if beautiful.border_width > 0 then
-    client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-    client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-end
+-- Focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    if awful.screen.focused().selected_tag then
+        client.focus = c
+        c:raise()
+    end
+end)
+
+--if beautiful.border_width > 0 then
+--    client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--    client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--end
 
 -- Set mouse resize mode (live or after)
 awful.mouse.resize.set_mode("live")
@@ -136,18 +128,5 @@ end)
 -- Breaks fullscreen and maximized
 -- client.disconnect_signal("request::geometry", awful.ewmh.client_geometry_requests)
 -- client.disconnect_signal("request::geometry", awful.ewmh.geometry)
-
--- Show the dashboard on login
--- Add `touch /tmp/awesomewm-show-dashboard` to your ~/.xprofile in order to make the dashboard appear on login
-local dashboard_flag_path = "/tmp/awesomewm-show-dashboard"
--- Check if file exists
-awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&1", function (_, __, ___, exitcode)
-    if exitcode == 0 then
-      -- Show dashboard
-      if dashboard_show then dashboard_show() end
-      -- Delete the file
-      awful.spawn.with_shell("rm "..dashboard_flag_path)
-    end
-end)
 
 return signals

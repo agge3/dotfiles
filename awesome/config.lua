@@ -1,23 +1,3 @@
-local gears = require("gears")
-local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
-local naughty = require("naughty")
-local util = require("util")
-local helpers = require("helpers")
-local error = require("error")
-local signals = require("signals")
-local screen = require("screen")
-local rules = require("rules")
-local keys = require("keys")
-local menu = require("menu")
-local wibox = require("wibox")
-local apps = require("apps")
-local decorations = require("decorations")
-local icons = require("icons")
-local notifications = require("notifications")
-
 local config = {}
 
 local themes = {
@@ -26,9 +6,10 @@ local themes = {
     "skyfall",      -- 3 --
     "ephemeral",    -- 4 --
     "amarena",      -- 5 --
+	"agge",			-- 6 --
 }
--- Change this number to use a different theme
-config.theme = themes[5]
+-- Change this number to use a different theme.
+config.theme = themes[6]
 
 -- Affects the window appearance: titlebar, titlebar buttons...
 local decoration_themes = {
@@ -88,6 +69,24 @@ config.wallpaper = {
 	"~/.config/wWNnXKB.jpeg",
 }
 
+local layouts = {
+	"awful.layout.suit.corner.nw",	-- 1 -- Corner layout.
+	"awful.layout.suit.corner.ne",	-- 2 -- Corner layout.
+	"awful.layout.suit.corner.sw",	-- 3 -- Corner layout.
+	"awful.layout.suit.corner.se",	-- 4 -- Corner layout.
+	"awful.layout.suit.",			-- 5 -- The floating layout.
+	"awful.layout.suit.magnifier",	-- 6 -- The magnifier layout.
+	"awful.layout.suit.max.name",	-- 7 -- Maximized layout.
+	"awful.layout.suit.max.fullscreen",	-- 8 -- Fullscreen layout.
+	"awful.layout.suit.spiral.dwindle",	-- 9 -- Dwindle layout.
+	"awful.layout.suit.spiral.name",	-- 10 -- Spiral layout.
+	"awful.layout.suit.tile.right", -- 11 -- The main tile algo, on the right.
+	"awful.layout.suit.tile.left", -- 12 -- The main tile algo, on the left.
+	"awful.layout.suit.tile.bottom", -- 13 -- The main tile algo, on the bottom.
+	"awful.layout.suit.tile.top", -- 14 -- The main tile algo, on the top.
+}
+config.layout = layouts[9]
+
 -- User variables and preferences
 config.user = {
     -- >> Default applications <<
@@ -95,10 +94,9 @@ config.user = {
     terminal = "kitty -1",
     floating_terminal = "kitty -1",
     browser = "firefox",
-    file_manager = "kitty -1 --class files -e ranger",
-    editor = "kitty -1 --class editor -e vim",
+    file_manager = "thunar",
+    editor = "kitty -1 --class editor -e nvim",
     email_client = "kitty -1 --class email -e neomutt",
-    music_client = "kitty -o font_size=12 --class music -e ncmpcpp",
 
     -- >> Web Search <<
     web_search_cmd = "xdg-open https://duckduckgo.com/?q=",

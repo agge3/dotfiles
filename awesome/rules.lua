@@ -1,22 +1,9 @@
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
-local naughty = require("naughty")
-local util = require("util")
-local helpers = require("helpers")
 local config = require("config")
-local error = require("error")
-local signals = require("signals")
-local screen = require("screen")
 local keys = require("keys")
-local menu = require("menu")
-local wibox = require("wibox")
-local apps = require("apps")
-local decorations = require("decorations")
-local icons = require("icons")
-local notifications = require("notifications")
+local monitor = require("monitor")
 
 local rules = {}
 
@@ -242,46 +229,26 @@ awful.rules.rules = {
                 "URxvt",
             },
         },
-        properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
-    },
-
-    -- Visualizer
-    {
-        rule_any = { class = { "Visualizer" } },
-        properties = {
-            floating = true,
-            maximized_horizontal = true,
-            sticky = true,
-            ontop = false,
-            skip_taskbar = true,
-            below = true,
-            focusable = false,
-            height = screen_height * 0.40,
-            opacity = 0.6,
-            titlebars_enabled = false,
-        },
-        callback = function (c)
-            awful.placement.bottom(c)
-        end
+        properties = { width = monitor.width * 0.45, height = monitor.height * 0.5 }
     },
 
     -- File chooser dialog
     {
         rule_any = { role = { "GtkFileChooserDialog" } },
-        properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.65 }
+        properties = { floating = true, width = monitor.width * 0.55, height = monitor.height * 0.65 }
     },
 
     -- Pavucontrol
     {
         rule_any = { class = { "Pavucontrol" } },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.8 }
+        properties = { floating = true, width = monitor.width * 0.45, height = monitor.height * 0.8 }
     },
 
     -- Galculator
     {
         rule_any = { class = { "Galculator" } },
         except_any = { type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.2, height = screen_height * 0.4 }
+        properties = { floating = true, width = monitor.width * 0.2, height = monitor.height * 0.4 }
     },
 
     -- File managers
@@ -295,7 +262,7 @@ awful.rules.rules = {
         except_any = {
             type = { "dialog" }
         },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.55}
+        properties = { floating = true, width = monitor.width * 0.45, height = monitor.height * 0.55}
     },
 
     -- Screenruler
@@ -311,7 +278,7 @@ awful.rules.rules = {
     {
         rule_any = { class = { "KeePassXC" } },
         except_any = { name = { "KeePassXC-Browser Confirm Access" }, type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.7, height = screen_height * 0.75},
+        properties = { floating = true, width = monitor.width * 0.7, height = monitor.height * 0.75},
     },
 
     -- Scratchpad
@@ -332,47 +299,9 @@ awful.rules.rules = {
             ontop = false,
             minimized = true,
             sticky = false,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
+            width = monitor.width * 0.7,
+            height = monitor.height * 0.75
         }
-    },
-
-    -- Markdown input
-    {
-        rule_any = {
-            instance = {
-                "markdown_input"
-            },
-            class = {
-                "markdown_input"
-            },
-        },
-        properties = {
-            skip_taskbar = false,
-            floating = true,
-            ontop = false,
-            minimized = true,
-            sticky = false,
-            width = screen_width * 0.5,
-            height = screen_height * 0.7
-        }
-    },
-
-    -- Music clients (usually a terminal running ncmpcpp)
-    {
-        rule_any = {
-            class = {
-                "music",
-            },
-            instance = {
-                "music",
-            },
-        },
-        properties = {
-            floating = true,
-            width = screen_width * 0.45,
-            height = screen_height * 0.50
-        },
     },
 
     -- Image viewers
@@ -385,8 +314,8 @@ awful.rules.rules = {
         },
         properties = {
             floating = true,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
+            width = monitor.width * 0.7,
+            height = monitor.height * 0.75
         },
         callback = function (c)
             awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
@@ -405,7 +334,7 @@ awful.rules.rules = {
             floating = true,
             ontop = true,
             sticky = true,
-            width = screen_width * 0.3,
+            width = monitor.width * 0.3,
         },
         callback = function (c)
             awful.placement.bottom_right(c, {
@@ -414,12 +343,6 @@ awful.rules.rules = {
                 margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2}
             })
         end
-    },
-
-    -- Magit window
-    {
-        rule = { instance = "Magit" },
-        properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.6 }
     },
 
     -- Steam guard
@@ -432,34 +355,6 @@ awful.rules.rules = {
         --         awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
         --     end)
         -- end
-    },
-
-    -- MPV
-    {
-        rule = { class = "mpv" },
-        properties = {},
-        callback = function (c)
-            -- Make it floating, ontop and move it out of the way if the current tag is maximized
-            if awful.layout.get(awful.screen.focused()) == awful.layout.suit.max then
-                c.floating = true
-                c.ontop = true
-                c.width = screen_width * 0.30
-                c.height = screen_height * 0.35
-                awful.placement.bottom_right(c, {
-                    honor_padding = true,
-                    honor_workarea = true,
-                    margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2}
-                })
-            end
-
-            -- Restore `ontop` after fullscreen is disabled
-            -- Sorta tries to fix: https://github.com/awesomeWM/awesome/issues/667
-            c:connect_signal("property::fullscreen", function ()
-                if not c.fullscreen then
-                    c.ontop = true
-                end
-            end)
-        end
     },
 
     -- "Fix" games that minimize on focus loss.
@@ -522,7 +417,7 @@ awful.rules.rules = {
             instance = { "Toolkit" },
             type = { "dialog" }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[1] },
+        properties = { },
     },
 
     -- Games
@@ -550,7 +445,8 @@ awful.rules.rules = {
                 "glyphclientapp.exe"
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[2] }
+		-- xxx screen = 1, tag = awful.screen.focused().tags[2] 
+        properties = { }
     },
 
     -- Chatting
@@ -569,7 +465,6 @@ awful.rules.rules = {
                 "6cord",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[3] }
     },
 
     -- Editing
@@ -581,7 +476,6 @@ awful.rules.rules = {
                 -- "Subl3",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[4] }
     },
 
     -- System monitoring
@@ -594,7 +488,6 @@ awful.rules.rules = {
                 "htop",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[5] }
     },
 
     -- Image editing
@@ -605,7 +498,6 @@ awful.rules.rules = {
                 "Inkscape",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[6] }
     },
 
     -- Mail
@@ -618,7 +510,6 @@ awful.rules.rules = {
                 "email",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[7] }
     },
 
     -- Game clients/launchers
@@ -633,7 +524,6 @@ awful.rules.rules = {
                 "Steam",
             }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[8] }
     },
 
     -- Miscellaneous
@@ -655,9 +545,7 @@ awful.rules.rules = {
         except_any = {
             type = { "dialog" }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[10] }
     },
-
 }
 
 return rules

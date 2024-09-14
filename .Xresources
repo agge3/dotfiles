@@ -1,0 +1,64 @@
+! Base Colors
+*background: #2e2235        ! Blackcurrant
+*foreground: #e5a1aa        ! Pale Chestnut Pink
+
+! Primary Colors
+*color0: #53b3b1            ! Fountain Blue
+*color1: #9ca2c3            ! Blue Bell
+*color2: #16d6a6            ! Pastel Green
+*color3: #b3c0c4            ! Heather Grey
+*color4: #533f83            ! Gigas Purple
+*color5: #dda4ff            ! Mauve Pink Purple
+*color6: #ca6570            ! Cabaret Red
+*color7: #9ad6c7            ! Light Grey Green
+
+! Secondary Colors
+*color8: #8aadab            ! Ziggurat Grey Green
+*color9: #c76b75            ! Charm Red
+*color10: #eabdcb           ! Chantilly Pink
+*color11: #cb3b55           ! Old Rose Red
+*color12: #fb10ff           ! Neon Purple
+*color13: #ffb7f3           ! Neon Light Pink
+*color14: #ff0232           ! Neon Red
+*color15: #2a41ff           ! Neon Blue
+
+! Additional Colors
+*color16: #2c057a           ! Neon Dark Purple
+*color17: #fb30ff           ! Neon Pink
+*color18: #40031d           ! Neon Purple Black
+*color19: #1bffc6           ! Light Pastel Green
+
+! Font and Border Colors
+*font: Monospace-10
+*borderWidth: 1
+*borderColor: #9ca2c3        ! Blue Bell
+
+! UI Elements
+*windowBorderColor: #8aadab  ! Ziggurat Grey Green
+*buttonBackground: #16d6a6   ! Pastel Green
+*buttonForeground: #2e2235   ! Blackcurrant
+*menuBackground: #2e2235     ! Blackcurrant
+*menuForeground: #b3c0c4     ! Heather Grey
+*menuHighlightBackground: #dda4ff  ! Mauve Pink Purple
+
+! Terminal Colors
+*termColor0: #2e2235        ! Blackcurrant
+*termColor1: #ff0232        ! Neon Red
+*termColor2: #16d6a6        ! Pastel Green
+*termColor3: #b3c0c4        ! Heather Grey
+*termColor4: #533f83        ! Gigas Purple
+*termColor5: #dda4ff        ! Mauve Pink Purple
+*termColor6: #9ad6c7        ! Light Grey Green
+*termColor7: #e5a1aa        ! Pale Chestnut Pink
+*termColor8: #8aadab        ! Ziggurat Grey Green
+*termColor9: #c76b75        ! Charm Red
+*termColor10: #eabdcb       ! Chantilly Pink
+*termColor11: #cb3b55       ! Old Rose Red
+*termColor12: #fb10ff       ! Neon Purple
+*termColor13: #ffb7f3       ! Neon Light Pink
+*termColor14: #ff0232       ! Neon Red
+*termColor15: #2a41ff       ! Neon Blue
+
+! Cursor
+Xcursor.theme: rose-pine-xcursor
+Xcursor.size: 48
