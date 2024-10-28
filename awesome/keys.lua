@@ -61,7 +61,7 @@ keys.globalkeys = gears.table.join(
 	-- Max layout
     -- Single tap: Set max layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ command }, "w",
+    awful.key({ command, option, ctrl }, "w",
         function()
             awful.layout.set(awful.layout.suit.max)
             helpers.single_double_tap(
@@ -78,7 +78,7 @@ keys.globalkeys = gears.table.join(
     -- Tiling
     -- Single tap: Set tiled layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ command }, "s",
+    awful.key({ command, option, ctrl }, "s",
         function()
             awful.layout.set(awful.layout.suit.tile)
             helpers.single_double_tap(

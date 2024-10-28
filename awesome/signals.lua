@@ -80,6 +80,15 @@ client.connect_signal('property::geometry', function(c)
     end
 end)
 
+-- Floating windows always on top.
+client.connect_signal("property::floating", function(c)
+	if c.floating then
+		c.ontop = true
+	else 
+		c.ontop = false
+	end
+end)
+
 -- ==============================================================
 -- ==============================================================
 

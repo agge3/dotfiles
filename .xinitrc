@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Set up display configurations using xrandr.
-~/.config/awesome/scripts/displays.sh
+#~/.config/awesome/scripts/displays.sh
 
 # Load X utilities.
 xrdb ~/.Xresources

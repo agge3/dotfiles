@@ -19,7 +19,7 @@ application/x-extension-xht=firefox-bin.desktop
 [Added Associations]
 image/png=ahoviewer.desktop;org.kde.gwenview.desktop;zzz-gimp.desktop;krita_png.desktop;okularApplication_kimgio.desktop;
 image/jpeg=org.kde.gwenview.desktop;
-application/pdf=firefox-bin.desktop;firefox.desktop;org.libreoffice.LibreOffice.draw.desktop;okularApplication_pdf.desktop;
+application/pdf=firefox-bin.desktop;org.libreoffice.LibreOffice.draw.desktop;firefox.desktop;okularApplication_pdf.desktop;
 text/plain=org.kde.kate.desktop;emacs.desktop;
 text/markdown=okularApplication_txt.desktop;
 image/svg+xml=org.kde.kolourpaint.desktop;

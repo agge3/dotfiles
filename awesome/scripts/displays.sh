@@ -18,9 +18,8 @@ MODELINE="378.10  2560 2744 3016 3472  1440 1443 1448 1650 -hsync +vsync"
 connected_displays=$(xrandr --listmonitors | awk '{print $NF}' | tail -n +2)
 
 # Set up display configurations
-flag=false
 if echo "$connected_displays" | grep -q "$HDMI"; then
-    xrandr --output $HDMI --mode $HDMI_RES --pos 0x0
+    xrandr --output $HDMI --mode $HDMI_RES --left-of $PRIMARY
 	flag = true
 else
     xrandr --output $HDMI --off
@@ -32,22 +31,13 @@ if echo "$connected_displays" | grep -q "$PRIMARY"; then
     	xrandr --newmode "$MODEL_NAME" $MODELINE
     	xrandr --addmode $PRIMARY "$MODEL_NAME"
     fi
-	# First monitor may occasionally be turned off
-	if $flag; then
-    	xrandr --output $PRIMARY --mode "$MODEL_NAME" --pos 0x0
-	else
-    	xrandr --output $PRIMARY --mode "$MODEL_NAME" --pos 1920x0
-	fi
+    xrandr --output $PRIMARY --mode "$MODEL_NAME" --pos --left-of $SECONDARY
 else
     xrandr --output $PRIMARY --off
 fi
 
 if echo "$connected_displays" | grep -q "$SECONDARY"; then
-	if $flag; then
-    	xrandr --output $SECONDARY --mode $SECONDARY_RES --pos 2560x0
-	else
-    	xrandr --output $SECONDARY --mode $SECONDARY_RES --pos 4480x0
-	fi
+    xrandr --output $SECONDARY --mode $SECONDARY_RES --right-of $PRIMARY
 else
     xrandr --output $SECONDARY --off
 fi
