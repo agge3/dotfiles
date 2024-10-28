@@ -169,7 +169,7 @@ end
 
 function make_impl:parseHeader()
 	-- Parse file until we reach the `class` keyword.
-	local lines = vim.api.nvim_buf_get_lines(self.buf, 0, -1 false)
+	local lines = vim.api.nvim_buf_get_lines(self.buf, 0, -1, false)
 
 	local copying = false
 	local key = ""
