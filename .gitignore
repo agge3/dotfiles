@@ -11,6 +11,7 @@
 # Include only specified
 !awesome
 !btop
+btop/btop.log
 !doom
 !hypr
 !mimeapps.list
