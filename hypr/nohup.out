@@ -17,3 +17,44 @@ terminate called after throwing an instance of 'std::runtime_error'
   what():  Error parsing JSON: * Line 1, Column 1
   Syntax error: value, object or array expected.
 
+[LOG] Welcome to hyprpaper!
+built from commit  ()
+[LOG] Cleaned old hyprpaper preloads (6), removing 69.1MB
+[LOG] Preloaded target /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png in 59.18ms -> Pixel size: [3840, 2160]
+[LOG] Buffer created for target /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png, Shared Memory usage: 8.3MB
+[LOG] Buffer created for target /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png, Shared Memory usage: 14.7MB
+[LOG] Total SM usage for all buffers: 23.0MB
+[LOG] hyprpaper socket started at /run/user/1000/hypr/4520b30d498daca8079365bdb909a8dea38e8d55_1730998795_1812640572/.hyprpaper.sock (fd: 6)
+[LOG] configure for DP-1
+[LOG] handlePreferredScale: 1.00 for 559a017ba2e0
+[LOG] configure for DP-1
+[LOG] Image data for DP-1: /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png at [-0.00, 0.00], scale: 0.50 (original image size: [3840, 2160])
+[LOG] Submitting viewport dest size 1920x1080 for 17ba2e0
+[LOG] configure for DP-2
+[LOG] handlePreferredScale: 1.00 for 559a017b4e70
+[LOG] configure for DP-2
+[LOG] configure for HDMI-A-1
+[LOG] handlePreferredScale: 1.00 for 559a017bb100
+[LOG] configure for HDMI-A-1
+[LOG] Image data for DP-2: /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png at [-0.00, 0.00], scale: 0.67 (original image size: [3840, 2160])
+[LOG] Submitting viewport dest size 2560x1440 for 17b4e70
+[LOG] Image data for HDMI-A-1: /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png at [-0.00, 0.00], scale: 0.50 (original image size: [3840, 2160])
+[LOG] Submitting viewport dest size 1920x1080 for 17bb100
+[LOG] handlePreferredScale: 1.00 for 559a017ba2e0
+[LOG] handlePreferredScale: 1.00 for 559a017b4e70
+[LOG] handlePreferredScale: 1.00 for 559a017bb100
+[LOG] Destroying output DP-2
+[LOG] configure for DP-2
+[LOG] handlePreferredScale: 1.00 for 559a017b4e70
+[LOG] configure for DP-2
+[LOG] Image data for DP-2: /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png at [-0.00, 0.00], scale: 0.67 (original image size: [3840, 2160])
+[LOG] Submitting viewport dest size 2560x1440 for 17b4e70
+[LOG] handlePreferredScale: 1.00 for 559a017b4e70
+[LOG] Destroying output DP-2
+[LOG] configure for DP-2
+[LOG] handlePreferredScale: 1.00 for 559a017e49b0
+[LOG] configure for DP-2
+[LOG] Image data for DP-2: /home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png at [-0.00, 0.00], scale: 0.67 (original image size: [3840, 2160])
+[LOG] Submitting viewport dest size 2560x1440 for 17e49b0
+[LOG] handlePreferredScale: 1.00 for 559a017e49b0
+[LOG] Destroying output DP-2

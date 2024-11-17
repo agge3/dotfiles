@@ -3,8 +3,9 @@
 -- a currently opened CXX header file NeoVim buffer.
 --
 function MakeImpl()
-	local decl = parseHeader()
-	generateImpl(decl)
+	local impl = make_impl:new({})
+	impl:parseHeader()
+	impl:generateImpl()
 end
 
 --

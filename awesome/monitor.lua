@@ -30,7 +30,9 @@ local monitor = {}
 --end
 
 local function set_wallpaper(s)
-	local wallpaper = "/home/agge/.config/wallpaper/wallhaven-2yodx9.png"
+	--local wallpaper = "/home/agge/.config/wallpaper/wallhaven-2yodx9.png"
+	--local wallpaper = "/home/agge/wallpaper/amd-minimal-logo-3840x2160-10739.png"
+	local wallpaper = "/home/agge/.config/wallpaper/wallhaven-kw96z7.png"
 	gears.wallpaper.maximized(wallpaper, s)
 end
 
