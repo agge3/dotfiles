@@ -126,6 +126,7 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export PATH="/home/agge/.luarocks/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -165,7 +166,16 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 # allow agge to use nix-daemon
 export NIX_REMOTE=daemon
 
-# Source aliases
+# Set user .service directory for runit.
+# xxx done in rc
+#export SVDIR=$HOME/.local/service
+
+# Source aliases.
 if [ -f "$HOME/.config/scripts/alias.sh" ]; then
 	source "$HOME/.config/scripts/alias.sh"
+fi
+
+# Source tools aliases.
+if [ -f "$HOME/scripts/tools_aliases.sh" ]; then
+	source "$HOME/scripts/tools_aliases.sh"
 fi

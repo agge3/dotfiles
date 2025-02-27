@@ -1,1 +1,5 @@
-local screenshot = require("scripts.screenshot")
+local scripts = {}
+
+scripts.screenshot = require("scripts.screenshot")
+
+return scripts

@@ -9,6 +9,12 @@ require("awful.autofocus")
 -- Notification library.
 local naughty = require("naughty")
 
+-- User logger.
+local logger = require("logger")
+-- Created as new here to be the main instance for this session; other modules
+-- just `require` to log across modules.
+logger:new()
+
 -- User-defined configuration.
 local config = require("config")
 
@@ -74,6 +80,11 @@ local xrandr = require("xrandr")
 -- Jit
 --pcall(function() jit.on() end)
 
+-- Log user-specified logs.
+local settings = require("settings")
+settings.log()
+
 -- Garbage collection
+util.garbage_collector()
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)

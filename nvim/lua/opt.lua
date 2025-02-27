@@ -11,6 +11,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 0
 vim.opt.expandtab = false
+vim.opt.textwidth = 80
 
 vim.opt.wrap = false
 
@@ -50,3 +51,22 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         update_in_insert = false,
     }
 )
+
+--
+-- VimTex
+--
+-- Enable filetype detection, plugin loading, and indentation
+vim.cmd('filetype plugin indent on')
+
+-- Enable syntax highlighting and features
+vim.cmd('syntax enable')
+
+-- Configure VimTeX viewer options
+vim.g.vimtex_view_method = 'zathura'  -- Use zathura as the viewer
+
+-- Or configure the general viewer options
+vim.g.vimtex_view_general_viewer = 'okular'
+vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
+
+-- Set the default compiler backend for VimTeX (latexmk is the default)
+vim.g.vimtex_compiler_method = 'latexmk'  -- Use latexmk as the compiler method

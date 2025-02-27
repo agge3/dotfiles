@@ -9,6 +9,7 @@ local themes = {
 	"agge",			-- 6 --
 }
 -- Change this number to use a different theme.
+--config.theme = themes[6]
 config.theme = themes[6]
 
 -- Affects the window appearance: titlebar, titlebar buttons...

@@ -45,9 +45,12 @@ return {
             fallback()
           end,
         }),
+		-- Add sources here for completion menu:
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
           { name = "path" },
+          { name = "nvim_lsp" },
+		  { name = "luasnip" },
+		  { name = "copilot" },	-- add/remove copilot here
         }, {
           { name = "buffer" },
         }),

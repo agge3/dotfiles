@@ -1,7 +1,9 @@
 local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
+
 local config = require("config")
+local logger = require("logger")
 
 local startup = {}
 
@@ -13,6 +15,7 @@ local startup = {}
 -- Load theme.
 local theme = config.theme
 local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme .. "/"
+logger:log("Theme directory: " .. theme_dir)
 beautiful.init(theme_dir .. "theme.lua")
 
 return startup

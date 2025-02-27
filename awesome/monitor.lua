@@ -3,29 +3,38 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
+
 local config = require("config")
+local logger = require("logger")
+local taskbar = require("taskbar")
 
 local monitor = {}
 
+logger:log("Monitor resolutions:")
+
+local pwidth = screen.primary.geometry.width
+local pheight = screen.primary.geometry.height
+logger:log("Primary monitor: width = " .. pwidth .. ", height = " .. pheight)
+
 -- Wallpaper
 --local function set_wallpaper(s)
---    -- Wallpaper
---    if beautiful.wallpaper then
+----    -- Wallpaper
+--	if beautiful.wallpaper then
 --        local wallpaper = beautiful.wallpaper
 --        -- If wallpaper is a function, call it with the screen.
 --        if type(wallpaper) == "function" then
 --            wallpaper = wallpaper(s)
 --        end
---
+----
 --        -- >> Method 1: Built in wallpaper function
 --        gears.wallpaper.fit(wallpaper, s, true)
 --        gears.wallpaper.maximized(wallpaper, s, true)
---
---        -- >> Method 2: Set theme's wallpaper with feh
---        --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
---
---        -- >> Method 3: Set last wallpaper with feh
---        --awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
+----
+----        -- >> Method 2: Set theme's wallpaper with feh
+----        --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
+----
+----        -- >> Method 3: Set last wallpaper with feh
+----        --awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
 --    end
 --end
 
@@ -39,57 +48,11 @@ end
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
-
-    ---- Create a promptbox for each screen
-    --s.mypromptbox = awful.widget.prompt()
-
-    ---- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    ---- We need one layoutbox per screen.
-    --s.mylayoutbox = awful.widget.layoutbox(s)
-    --s.mylayoutbox:buttons(gears.table.join(
-    --                       awful.button({ }, 1, function () awful.layout.inc( 1) end),
-    --                       awful.button({ }, 3, function () awful.layout.inc(-1) end),
-    --                       awful.button({ }, 4, function () awful.layout.inc( 1) end),
-    --                       awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-
-    ---- Create a taglist widget
-    --s.mytaglist = awful.widget.taglist {
-    --    screen  = s,
-    --    filter  = awful.widget.taglist.filter.all,
-    --    buttons = taglist_buttons
-    --}
-
-    ---- Create a tasklist widget
-    --s.mytasklist = awful.widget.tasklist {
-    --    screen  = s,
-    --    filter  = awful.widget.tasklist.filter.currenttags,
-    --    buttons = tasklist_buttons
-    --}
-
-    ---- Create the wibox
-    --s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    ---- Add widgets to the wibox
-    --s.mywibox:setup {
-    --    layout = wibox.layout.align.horizontal,
-    --    { -- Left widgets
-    --        layout = wibox.layout.fixed.horizontal,
-    --        mylauncher,
-    --        s.mytaglist,
-    --        s.mypromptbox,
-    --    },
-    --    s.mytasklist, -- Middle widget
-    --    { -- Right widgets
-    --        layout = wibox.layout.fixed.horizontal,
-    --        mykeyboardlayout,
-    --        wibox.widget.systray(),
-    --        mytextclock,
-    --        s.mylayoutbox,
-    --    },
-    --}
+	local tb = taskbar:new({}, s)
 end)
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+-- xxx nil?
 --awful.screen.connect_signal("property::geometry", set_wallpaper)
 
 -------------------------------------------------------------------------------
@@ -118,12 +81,12 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag(tagnames, s, layouts)
 
     -- Create tags with seperate configuration for each tag
-    -- awful.tag.add(tagnames[1], {
-    --     layout = layouts[1],
-    --     screen = s,
-    --     master_width_factor = 0.6,
-    --     selected = true,
-    -- })
+    awful.tag.add(tagnames[1], {
+        layout = layouts[1],
+        screen = s,
+        master_width_factor = 0.6,
+        selected = true,
+    })
     -- ...
 end)
 
@@ -147,7 +110,14 @@ local centered_client_placement = function(c)
 end
 
 -- Get screen geometry.
-monitor.width = awful.screen.focused().geometry.width
-monitor.height = awful.screen.focused().geometry.height
+monitor.curr_width = awful.screen.focused().geometry.width
+monitor.curr_height = awful.screen.focused().geometry.height
+
+monitor.pref_width = pwidth
+monitor.pref_height = pheight
+
+-- xxx to not break old calls
+monitor.width = pwidth
+monitor.height = pheight
 
 return monitor

@@ -1,0 +1,95 @@
+local awful = require("awful")
+local wibox = require("wibox")
+
+return function(theme)
+--	-- Wibar
+--	theme.wibar_position = "bottom"
+--	theme.wibar_height = dpi(40)
+--	theme.wibar_fg = x.color0
+--	theme.wibar_bg = x.color7
+--theme.wibar_opacity = 0.7
+--	theme.wibar_border_color = x.color0
+--	theme.wibar_border_width = 0
+--	theme.wibar_border_radius = theme.border_radius
+--	--theme.wibar_width = screen_width - theme.screen_margin * 4 -theme.wibar_border_width * 2
+--	theme.wibar_width = 885
+--	--theme.wibar_x = screen_width / 2 - theme.wibar_width - theme.screen_margin * 2
+--	--theme.wibar_x = theme.screen_margin * 2
+--	--theme.wibar_x = screen_width - theme.wibar_width - theme.wibar_border_width * 2 - theme.screen_margin * 2
+--	--theme.wibar_y = theme.screen_margin * 2
+--	
+--	-- Textclock
+--	local mytextclock = wibox.widget.textclock(" %H:%M ")
+--	mytextclock.font = theme.font
+--	
+--	-- Separators
+--	local first = wibox.widget.textbox(markup.font("Terminus 4", " "))
+--	local spr   = wibox.widget.textbox(' ')
+--	
+--	function theme.at_screen_connect(s)
+--	    -- Quake application
+--	    s.quake = lain.util.quake({ app = awful.util.terminal })
+--	
+--	    -- If wallpaper is a function, call it with the screen
+--	    local wallpaper = theme.wallpaper
+--	    if type(wallpaper) == "function" then
+--	        wallpaper = wallpaper(s)
+--	    end
+--	    gears.wallpaper.maximized(wallpaper, s, true)
+--	
+--	    -- Tags
+--	    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
+--	
+--	    -- Create a promptbox for each screen
+--	    s.mypromptbox = awful.widget.prompt()
+--	
+--	    -- Textual layoutbox
+--	    s.mytxtlayoutbox = wibox.widget.textbox(theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
+--	    awful.tag.attached_connect_signal(s, "property::selected", function () update_txt_layoutbox(s) end)
+--	    awful.tag.attached_connect_signal(s, "property::layout", function () update_txt_layoutbox(s) end)
+--	    s.mytxtlayoutbox:buttons(my_table.join(
+--	                           awful.button({}, 1, function() awful.layout.inc(1) end),
+--	                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
+--	                           awful.button({}, 3, function() awful.layout.inc(-1) end),
+--	                           awful.button({}, 4, function() awful.layout.inc(1) end),
+--	                           awful.button({}, 5, function() awful.layout.inc(-1) end)))
+--	
+--	    -- Create a taglist widget
+--	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+--	
+--	    -- Create a tasklist widget
+--	    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+--	
+--	    -- Create the wibox
+--	    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18) })
+--	
+--	    -- Add widgets to the wibox
+--	    s.mywibox:setup {
+--	        layout = wibox.layout.align.horizontal,
+--	        { -- Left widgets
+--	            layout = wibox.layout.fixed.horizontal,
+--	            first,
+--	            s.mytaglist,
+--	            spr,
+--	            s.mytxtlayoutbox,
+--	            --spr,
+--	            s.mypromptbox,
+--	            spr,
+--	        },
+--	        s.mytasklist, -- Middle widget
+--	        { -- Right widgets
+--	            layout = wibox.layout.fixed.horizontal,
+--	            wibox.widget.systray(),
+--	            spr,
+--	            theme.mpd.widget,
+--	            --theme.mail.widget,
+--	            cpu.widget,
+--	            mem.widget,
+--	            bat.widget,
+--	            net.widget,
+--	            theme.volume.widget,
+--	            mytextclock
+--	        },
+--	    }
+--	end
+end

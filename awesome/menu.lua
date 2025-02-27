@@ -2,9 +2,9 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local config = require("config")
-local wibox = require("wibox")
 local menubar = require("menubar")
+
+local config = require("config")
 
 local menu = {}
 
@@ -40,9 +40,11 @@ local keyboard_layout = awful.widget.keyboardlayout()
 
 -- Wibar
 -- Create a textclock widget
---local text_clock = wibox.widget.textclock()
+-- xxx no awful?
+local text_clock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
+-- xxx broken
 --local taglist_buttons = gears.table.join(
 --	awful.button({ }, 1, function(t) t:view_only() end),
 --    awful.button({ modkey }, 1, function(t)
@@ -61,7 +63,8 @@ local keyboard_layout = awful.widget.keyboardlayout()
 --    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
 --    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end),
 --)
---
+
+-- xxx broken
 --local tasklist_buttons = gears.table.join(
 --	awful.button({ }, 1, function (c)
 --	    if c == client.focus then

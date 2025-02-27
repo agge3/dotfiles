@@ -302,8 +302,10 @@ keys.globalkeys = gears.table.join(
     ),
 
     -- Reload Awesome:
-    awful.key({ command, option, ctrl }, "r", 
-		awesome.restart,
+	-- xxx also load script to fix monitors
+    awful.key({ command, option, ctrl }, "r",
+			--aweful.spawn.easy_async_with_shell("~/scripts/set-monitors.sh")
+			awesome.restart,
         {description = "reload awesome", group = "awesome"}),
 
     -- Quit Awesome:

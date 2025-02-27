@@ -17,9 +17,9 @@ application/x-extension-xhtml=firefox-bin.desktop
 application/x-extension-xht=firefox-bin.desktop
 
 [Added Associations]
-image/png=ahoviewer.desktop;org.kde.gwenview.desktop;zzz-gimp.desktop;krita_png.desktop;okularApplication_kimgio.desktop;
+image/png=org.kde.gwenview.desktop;zzz-gimp.desktop;ahoviewer.desktop;krita_png.desktop;okularApplication_kimgio.desktop;
 image/jpeg=org.kde.gwenview.desktop;
-application/pdf=firefox-bin.desktop;org.libreoffice.LibreOffice.draw.desktop;firefox.desktop;okularApplication_pdf.desktop;
+application/pdf=firefox-bin.desktop;okularApplication_pdf.desktop;org.libreoffice.LibreOffice.draw.desktop;firefox.desktop;
 text/plain=org.kde.kate.desktop;emacs.desktop;
 text/markdown=okularApplication_txt.desktop;
 image/svg+xml=org.kde.kolourpaint.desktop;
@@ -38,3 +38,5 @@ application/x-extension-shtml=firefox-bin.desktop;
 application/xhtml+xml=firefox-bin.desktop;
 application/x-extension-xhtml=firefox-bin.desktop;
 application/x-extension-xht=firefox-bin.desktop;
+application/json=org.kde.kate.desktop;
+text/x-chdr=org.kde.kate.desktop;

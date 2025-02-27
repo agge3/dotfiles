@@ -1,5 +1,5 @@
 [{
-    "output": "DP-2",
+    "output": "DP-3",
 
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)

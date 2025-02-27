@@ -25,7 +25,6 @@ return {
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter-context" },
-    { "laytan/cloak.nvim" },
     { "theprimeagen/harpoon" },
     { "luckasRanarison/tree-sitter-hyprlang" },
     { "Bekaboo/deadcolumn.nvim" },

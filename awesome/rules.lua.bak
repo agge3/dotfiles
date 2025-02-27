@@ -1,9 +1,13 @@
 local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
+
 local config = require("config")
 local keys = require("keys")
 local monitor = require("monitor")
+local util = require("util")
+local logger = require("logger")
+local settings = require("settings")
 
 local rules = {}
 
@@ -33,7 +37,7 @@ awful.rules.rules = {
         },
     },
 
-    -- Floating clients
+    -- Floating clients (auto).
     {
         rule_any = {
             instance = {
@@ -69,6 +73,49 @@ awful.rules.rules = {
         properties = { floating = true }
     },
 
+	-- Floating clients (small).
+    {
+        rule_any = {
+			class = {
+				--"pavucontrol",
+			},
+		},
+        properties = {
+			floating = true,
+			width = small_sq.width,
+			height = small_sq.height,
+		},
+    },
+
+	-- Floating clients (medium).
+    {
+        rule_any = {
+			class = {
+				--"pavucontrol",
+				"steam",
+			},
+		},
+        properties = {
+			floating = true,
+			width = medium_sq.width,
+			height = medium_sq.height,
+		},
+    },
+
+	-- Floating clients (large).
+    {
+        rule_any = {
+			class = {
+				"pavucontrol",
+			},
+		},
+        properties = {
+			floating = true,
+			width = large_sq.width,
+			height = large_sq.height,
+		},
+    },
+
     -- TODO why does Chromium always start up floating in AwesomeWM?
     -- Temporary fix until I figure it out
     {
@@ -81,7 +128,7 @@ awful.rules.rules = {
         properties = { floating = false }
     },
 
-    -- Fullscreen clients
+    -- Fullscreen clients.
     {
         rule_any = {
             class = {
@@ -93,6 +140,7 @@ awful.rules.rules = {
                 "dota2",
                 "Terraria.bin.x86",
                 "dontstarve_steam",
+				"CivlizationVI"
             },
             instance = {
                 "synthetik.exe",
@@ -238,17 +286,21 @@ awful.rules.rules = {
         properties = { floating = true, width = monitor.width * 0.55, height = monitor.height * 0.65 }
     },
 
-    -- Pavucontrol
-    {
-        rule_any = { class = { "Pavucontrol" } },
-        properties = { floating = true, width = monitor.width * 0.45, height = monitor.height * 0.8 }
-    },
 
     -- Galculator
     {
-        rule_any = { class = { "Galculator" } },
+        rule_any = { 
+			class = { 
+				"Galculator",
+				"KCalc",
+			}
+		},
         except_any = { type = { "dialog" } },
-        properties = { floating = true, width = monitor.width * 0.2, height = monitor.height * 0.4 }
+        properties = {
+			floating = true,
+			width = monitor.width * 0.2,
+			height = monitor.height * 0.4
+		}
     },
 
     -- File managers
@@ -262,7 +314,11 @@ awful.rules.rules = {
         except_any = {
             type = { "dialog" }
         },
-        properties = { floating = true, width = monitor.width * 0.45, height = monitor.height * 0.55}
+        properties = { 
+			floating = true,
+			width = monitor.width * 0.45,
+			height = monitor.height * 0.55
+		}
     },
 
     -- Screenruler
@@ -435,18 +491,23 @@ awful.rules.rules = {
                 "Terraria.bin.x86",
                 "dontstarve_steam",
                 "Wine",
-                "trove.exe"
+                "trove.exe",
+				"Bioshock"
             },
             instance = {
                 "love.exe",
                 "synthetik.exe",
                 "pathofexile_x64steam.exe",
                 "leagueclient.exe",
-                "glyphclientapp.exe"
+                "glyphclientapp.exe",
+				"bioshock.exe"
             },
         },
-		-- xxx screen = 1, tag = awful.screen.focused().tags[2] 
-        properties = { }
+		-- xxx always set games to 2k
+        properties = {
+			screen = 1, 
+			tag = awful.screen.focused().tags[2] 
+		},
     },
 
     -- Chatting
@@ -465,6 +526,7 @@ awful.rules.rules = {
                 "6cord",
             },
         },
+        properties = { floating = true, width = monitor.width * 0.45, height = monitor.height * 0.8 }
     },
 
     -- Editing
