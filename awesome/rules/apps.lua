@@ -64,6 +64,17 @@ return {
 		}
     },
 
+    -- LibreOffice dialog
+    {
+        rule_any = { role = { "InputOutput" } },
+        properties = {
+			floating = true,
+			width = 720,
+			height = 570,
+			-- xxx pos
+		}
+    },
+
     -- Galculator
     {
         rule_any = { 

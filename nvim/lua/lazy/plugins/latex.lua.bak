@@ -1,3 +1,4 @@
+-- xxx do we need? just use lxc-latex
 return {
 	{
 	  "lervag/vimtex",

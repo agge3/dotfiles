@@ -6,7 +6,7 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- tab is a four character \t
+-- tab is a four space '\t'
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 0
@@ -51,6 +51,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         update_in_insert = false,
     }
 )
+
+--
+-- C/CPP
+--
+-- xxx https://neovim.io/doc/user/usr_30.html#30.2 
+--vim.opt.makeprg = 'make\ %:r:S.o'	-- `:set makeprg=make\ %:r:S.o`
+--vim.opt.cindent = true
+
 
 --
 -- VimTex

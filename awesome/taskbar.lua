@@ -4,13 +4,17 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 
+local lain = require("lain")
+local calender = require("external.popups.dashboard.home.widgets.calendar")
+
 local config = require("config")
 
 local taskbar = {}
 
 function taskbar:init(s)
-	---- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
+	-- Create a promptbox for each screen
+	-- xxx don't need
+	--s.mypromptbox = awful.widget.prompt()
 	
 	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
@@ -25,6 +29,72 @@ function taskbar:init(s)
 	s.mytaglist = awful.widget.taglist {
 	    screen  = s,
 	    filter  = awful.widget.taglist.filter.all,
+	    style   = {
+	        shape = gears.shape.powerline
+	    },
+	    layout   = {
+	        spacing = -12,
+	        spacing_widget = {
+	            color  = "#dddddd",
+	            shape  = gears.shape.powerline,
+	            widget = wibox.widget.separator,
+	        },
+	        layout  = wibox.layout.fixed.horizontal
+	    },
+	    widget_template = {
+	        {
+	            {
+	                {
+	                    {
+	                        {
+	                            id     = "index_role",
+	                            widget = wibox.widget.textbox,
+	                        },
+	                        margins = 4,
+	                        widget  = wibox.container.margin,
+	                    },
+	                    bg     = "#dddddd",
+	                    shape  = gears.shape.circle,
+	                    widget = wibox.container.background,
+	                },
+	                {
+	                    {
+	                        id     = "icon_role",
+	                        widget = wibox.widget.imagebox,
+	                    },
+	                    margins = 2,
+	                    widget  = wibox.container.margin,
+	                },
+	                {
+	                    id     = "text_role",
+	                    widget = wibox.widget.textbox,
+	                },
+	                layout = wibox.layout.fixed.horizontal,
+	            },
+	            left  = 18,
+	            right = 18,
+	            widget = wibox.container.margin
+	        },
+	        id     = "background_role",
+	        widget = wibox.container.background,
+	        -- Add support for hover colors and an index label
+	        create_callback = function(self, c3, index, objects) --luacheck: no unused args
+	            self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+	            self:connect_signal("mouse::enter", function()
+	                if self.bg ~= "#ff0000" then
+	                    self.backup     = self.bg
+	                    self.has_backup = true
+	                end
+	                self.bg = "#ff0000"
+	            end)
+	            self:connect_signal("mouse::leave", function()
+	                if self.has_backup then self.bg = self.backup end
+	            end)
+	        end,
+	        update_callback = function(self, c3, index, objects) --luacheck: no unused args
+	            self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+	        end,
+	    },
 	    buttons = taglist_buttons
 	}
 	
@@ -69,8 +139,8 @@ function taskbar:topbar(s)
 	mytextclock = wibox.widget.textclock(
 		'<span color="' .. color.white .. '" font="Ubuntu Nerd Font Bold 13"> %a %b %d, %H:%M </span>', 10)
 	
-	--calendar-widget
-	--xxx
+	-- calendar-widget
+	-- xxx use lain's caland
 	--local cw = calendar_widget({
 	--	theme = "nord",
 	--	placement = "top_center",

@@ -65,7 +65,7 @@ return {
         sorting = defaults.sorting,
       }
     end,
-    ---@param opts cmp.ConfigSchema | {auto_brackets?: string[]}
+
     config = function(_, opts)
       for _, source in ipairs(opts.sources) do
         source.group_index = source.group_index or 1
@@ -140,18 +140,21 @@ return {
   --}
 
   -- for 2 lang, 1 file
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  -- vs. mini.comment
-  { "numToStr/Comment.nvim",
-    lazy = false,
-  },
+	-- xxx doesn't seem like we need this
+  --{
+  --  "JoosepAlviste/nvim-ts-context-commentstring",
+  --  lazy = true,
+  --  opts = {
+  --    enable_autocmd = false,
+  --  },
+  --},
+  -- vs. mini.comment -- mini comment seems simpler and nicer
+-- xxx haven't used this, but looks interesting with the binds	
+  --{ "numToStr/Comment.nvim",
+  --  lazy = false,
+  --},
 
   -- LOOK INTO: Better text-objects
-  { "echasnovski/mini.ai" },
+	-- xxx haven't use this
+  --{ "echasnovski/mini.ai" },
 }

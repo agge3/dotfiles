@@ -468,4 +468,30 @@ function helpers.toggle_fullscreen_on_tag()
 	end
 end
 
+-- Fullscreen the focused client and hide all other clients (on the focused
+-- screen and on the focused tag).
+function helpers.fullscreen_focused_client()
+	-- Get all clients on this screen.
+	local clients = awful.screen.focused().all_clients
+
+	-- Get the tag for the focused client on this screen.
+	local tag = client.focus and client.focus.first_tag or nil
+
+	-- For each client.
+	for _, c in pairs(clients) do
+		-- For each tag.
+		for _, t in ipairs(c:tags()) do
+			-- If they match, then apply the operation.
+			if t == tag then
+				if client.focus then
+					c.fullscreen = not c.fullscreen
+					c:emit_signal("request::fullscreen", "toggle")
+				else
+					c.hidden = not c.hidden
+				end
+			end
+		end
+	end
+end
+
 return helpers

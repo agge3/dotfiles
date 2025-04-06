@@ -45,6 +45,7 @@ return {
     },
     
     -- indent guides for Neovim
+	-- xxx mess with
     {
       "lukas-reineke/indent-blankline.nvim",
       opts = {
@@ -106,13 +107,15 @@ return {
     },
     
     -- Displays a popup with possible key bindings of the command you started typing
-    {
-      "folke/which-key.nvim",
-      opts = function(_, opts)
-      end,
-    },
+	-- xxx look into
+    --{
+    --  "folke/which-key.nvim",
+    --  opts = function(_, opts)
+    --  end,
+    --},
     
     -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
+	-- xxx very nice configure better
     {
       "folke/noice.nvim",
       event = "VeryLazy",
@@ -158,11 +161,14 @@ return {
     },
     
     -- icons
+	-- xxx look into
     { "nvim-tree/nvim-web-devicons", lazy = true },
     
     -- ui components
+	-- xxx look into
     { "MunifTanjim/nui.nvim", lazy = true },
 
+	-- xxx configure
     {
       "nvimdev/dashboard-nvim",
     },

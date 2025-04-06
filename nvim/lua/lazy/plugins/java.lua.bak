@@ -1,3 +1,4 @@
+-- xxx make work when we develop java again. for now there's not a need
 return {
     {
         "mfussenegger/nvim-jdtls",

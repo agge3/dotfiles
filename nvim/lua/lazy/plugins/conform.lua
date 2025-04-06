@@ -1,3 +1,5 @@
+-- likely most popular? fine for now, but may want to look into. haven't really
+-- used
 return {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },

@@ -13,7 +13,9 @@ require("lazy").setup({
     { import = "lazy.plugins" },
   },
   defaults = {
-    lazy = true,
+	-- xxx profile first and configure lazy on plugins that need it
+    lazy = false,
+
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },

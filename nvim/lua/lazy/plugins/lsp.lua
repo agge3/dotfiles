@@ -28,6 +28,19 @@ return {
         },
 
         config = function()
+			-- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments 
+			-- disable completion in comments
+			enabled = function()
+				local ctx = require 'cmp.config.context'
+
+				if vim.api.nvim_get_mode().mode == 'c' then
+					return true
+				else
+					return not ctx.in_treesitter_capture('comment') and
+						ctx.in_syntax_group('comment')
+				end
+			end
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             local default = function(server)

@@ -20,6 +20,16 @@ return {
 			require("mini.trailspace").setup()
 		end,
 	},
+	{
+		"ThePrimeagen/vim-apm",
+		config = function()
+			local apm = require("vim-apm")
+			apm:setup({})
+			vim.keymap.set("n", "<leader>apm", function()
+				apm:toggle_monitor() 
+			end)
+		end,
+	},
 
     -- one-liners
     { "mbbill/undotree" },
@@ -27,7 +37,7 @@ return {
     { "nvim-treesitter/nvim-treesitter-context" },
     { "theprimeagen/harpoon" },
     { "luckasRanarison/tree-sitter-hyprlang" },
-    { "Bekaboo/deadcolumn.nvim" },
+    --{ "Bekaboo/deadcolumn.nvim" },
     { "lukas-reineke/virt-column.nvim" },
     { "nvim-tree/nvim-tree.lua" },
 }

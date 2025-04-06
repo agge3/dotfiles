@@ -1,5 +1,20 @@
 local config = {}
 
+home = os.getenv("HOME")
+
+-- SEE: `xrandr --listmonitors` and remember Lua 1-indexes for screens.
+config.monitors = {
+	center = "DP-2",
+	left =  "DP-0",
+	right = "HDMI-A-0",
+}
+
+--config.workspaces = {
+--	[config.monitors.center] = 
+--	[config.monitors.left] = 
+--	[config.monitors.right] = 
+--}
+
 local themes = {
     "manta",        -- 1 --
     "lovelace",     -- 2 --
@@ -64,10 +79,10 @@ config.exit_screen_theme = exit_screen_themes[2]
 
 config.workspace_tags = { "一", "二", "三", "四", "五", "六", "七", "八", "九" }
 
-config.wallpaper = {
-	"~/.config/wallpaper/wallhaven-2yodx9.png",
-	"~/.config/wallpaper/wallhaven-kw96z7.png",
-	"~/.config/wWNnXKB.jpeg",
+config.wallpapers = {
+	[config.monitors.center] = home .. "/.config/wallpapers/wallhaven-2yodx9.png",
+	[config.monitors.right] = home .. "/.config/wallpapers/wallhaven-kw96z7.png",
+	[config.monitors.left] = home .. "/.config/wallpapers/wallhaven-kw96z7.png",
 }
 
 local layouts = {
@@ -92,8 +107,8 @@ config.layout = layouts[9]
 config.user = {
     -- >> Default applications <<
     -- Check apps.lua for more
-    terminal = "kitty -1",
-    floating_terminal = "kitty -1",
+    terminal = "wezterm",
+    floating_terminal = "wezterm",
     browser = "firefox",
     file_manager = "thunar",
     editor = "kitty -1 --class editor -e nvim",
