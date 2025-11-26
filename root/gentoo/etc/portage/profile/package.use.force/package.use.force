@@ -1,0 +1,12 @@
+media-libs/mesa abi_x86_32
+virtual/opengl abi_x86_32
+media-libs/libglvnd abi_x86_32
+virtual/wine abi_x86_32
+media-libs/vulkan-loader abi_x86_32
+media-libs/vulkan-layers abi_x86_32
+media-libs/vulkan-tools abi_x86_32
+media-libs/freetype abi_x86_32
+media-libs/libpng abi_x86_32
+media-libs/gnutls abi_x86_32
+media-libs/libsdl2 abi_x86_32
+media-libs/fluidsynth abi_x86_32

@@ -1,0 +1,27 @@
+# Hyprland
+#gui-apps/waybar **	# waybar experimental no longer needed...?
+
+# Use upstream for AwesomeWM.
+x11-wm/awesome **
+
+# Use upstream for NeoVim.
+#app-editors/neovim **
+#dev-libs/tree-sitter-c **
+#dev-libs/tree-sitter-lua **
+#dev-libs/tree-sitter-markdown **
+
+# vidya games
+*/*::steam-overlay
+virtual/wine ~x86
+games-util/steam-launcher ~x86
+games-util/lutris ~x86
+app-benchmarks/phoronix-test-suite **
+
+# vmya games
+app-emulation/qemu ~x86
+sys-firmware/edk2-ovmf ~x86
+app-emulation/LookingGlass ** ~x86
+
+# Ruby (on rails)
+dev-ruby/rbenv **
+dev-ruby/ruby-build **
