@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# if started, dont restart
-lxc-start -n sagemath
-
-# capture pid, listen to pid, if pid is killed, restart

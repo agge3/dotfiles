@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# xxx can take arguments and respond accordingly, see man runsv
-
-lxc-stop -n sagemath
