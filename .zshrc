@@ -1,8 +1,5 @@
 ## Wayland
-source $HOME/.config/scripts/wayland.sh
-
-# xxx do we want this environment variable?
-#OPT_PATH="$HOME/.local/opt"
+#source $HOME/.config/scripts/wayland.sh
 
 ## X11
 #source $HOME/.config/scripts/x11.sh
@@ -20,21 +17,6 @@ setopt INC_APPEND_HISTORY_TIME
 ## Miscellaneous environment variables.
 export EDITOR=nvim
 
-## Japanese IME fcitx environment variables.
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx
-
-## Application themes:
-export GTK_THEME=Adwaita
-export QT_STYLE_OVERRIDE=adwaita
-export XCURSOR_THEME=rose-pine-xcursor
-export XCURSOR_SIZE=24
-
-## GTK settings:
-gsettings set org.gnome.desktop.interface gtk-theme adwaita
-gsettings set org.gnome.desktop.interface cursor-theme rose-pine-xcursor
-
 ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -43,8 +25,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export PATH=$HOME/bin:/usr/local/bin:/opt/bin:/Users/agge/.cargo/bin:/opt/homebrew/bin:$JAVA_HOME/bin:$HOME/.local/npm/bin:/Applications/MATLAB_R2025b.app/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -129,7 +111,6 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="$PATH:/home/agge/.luarocks/bin:/home/agge/.local/npm/bin:/home/agge/.local/bin:/home/agge/go/bin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -156,30 +137,18 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Enabling Portage completions and Gentoo prompt for zsh
-autoload -U compinit promptinit
-compinit
-promptinit; prompt gentoo
-
 zstyle ':completion::complete:*' use-cache 1
 
 # change color of auto-suggestion suggestions - foreground color num
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
-# allow agge to use nix-daemon
-export NIX_REMOTE=daemon
-
-# Set user .service directory for runit.
-# xxx done in rc
-#export SVDIR=$HOME/.local/service
-
-# Source aliases.
-if [ -f "$HOME/.config/scripts/alias.sh" ]; then
+# Source aliases
+if [[ -f "$HOME/.config/scripts/alias.sh" ]]; then
 	source "$HOME/.config/scripts/alias.sh"
 fi
 
-# Source tools aliases.
-if [ -f "$HOME/scripts/tools_aliases.sh" ]; then
+# Source tools aliases
+if [[ -f "$HOME/scripts/tools_aliases.sh" ]]; then
 	source "$HOME/scripts/tools_aliases.sh"
 fi
 
@@ -189,3 +158,13 @@ export _ZO_RESOLVE_SYMLINKS=1	# don't duplicate entries for symlinks
 #export _ZO_MAXAGE
 # zoxide: add this to the **end** of your config file
 eval "$(zoxide init zsh)"
+
+# Launch-and-exit helpers. Each spawns a fresh instance and closes the terminal.
+_launch() { open -na "$1"; }
+
+firefox() {
+    /Applications/Firefox.app/Contents/MacOS/firefox --new-window "${1:-about:blank}" &
+    disown
+	exit
+}
+ghostty()  { _launch "/Applications/Ghostty.app"; }
