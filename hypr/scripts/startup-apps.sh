@@ -6,7 +6,7 @@ exec gentoo-pipewire-launcher &
 # hypr ecosystem
 #exec hypridle &
 exec hyprpaper &
-exec hyprcursor &
+#exec hyprcursor &
 
 # polkit - kde is best (gentoowiki)
 exec /usr/lib64/libexec/polkit-kde-authentication-agent-1 &

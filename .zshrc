@@ -1,5 +1,8 @@
 ## Wayland
-#source $HOME/.config/scripts/wayland.sh
+source $HOME/.config/scripts/wayland.sh
+
+# xxx do we want this environment variable?
+#OPT_PATH="$HOME/.local/opt"
 
 ## X11
 #source $HOME/.config/scripts/x11.sh
@@ -126,7 +129,7 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/home/agge/.luarocks/bin:$PATH"
+export PATH="$PATH:/home/agge/.luarocks/bin:/home/agge/.local/npm/bin:/home/agge/.local/bin:/home/agge/go/bin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -179,3 +182,10 @@ fi
 if [ -f "$HOME/scripts/tools_aliases.sh" ]; then
 	source "$HOME/scripts/tools_aliases.sh"
 fi
+
+# zoxide
+export _ZO_ECHO=1	# print the directory before navigating to it
+export _ZO_RESOLVE_SYMLINKS=1	# don't duplicate entries for symlinks
+#export _ZO_MAXAGE
+# zoxide: add this to the **end** of your config file
+eval "$(zoxide init zsh)"

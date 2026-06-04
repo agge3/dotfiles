@@ -22,3 +22,5 @@ fi
 # export XMODIFIERS=@im=ibus
 # export QT_IM_MODULE=ibus
 # ibus restart
+
+alias docker="podman"
